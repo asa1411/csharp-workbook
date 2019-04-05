@@ -12,10 +12,6 @@ namespace PigLatin
             Console.ReadLine();
         }
         
-        public static string TranslateWord(string word)
-        {
-            // your code goes here
-            return word;
-        }
+        
     }
 }
