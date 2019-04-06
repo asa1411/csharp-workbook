@@ -55,8 +55,9 @@ namespace HelloWorld
         }
         static void Question5(string[] args)
         {
-            decimal myDecimal = 345;
+            decimal myDecimal = 345.0m;
             Console.WriteLine(myDecimal.GetType());
+            Console.WriteLine(myDecimal);
         }
         static void Question6(string[] args)
         {
@@ -83,7 +84,7 @@ namespace HelloWorld
 
         static void Main(string[] args)
         {
-            double nuM = 123.0098;
+            decimal nuM = 123.0098m;
             // int i = Convert.ToInt32(nuM);
             int i = (int)nuM;
             Console.WriteLine(i.GetType());
