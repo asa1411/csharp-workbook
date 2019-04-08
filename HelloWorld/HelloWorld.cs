@@ -32,16 +32,32 @@ namespace HelloWorld
             Console.WriteLine(str2);
         }
         static void Main(string[] args)
-        {
-            Console.WriteLine("Let's play a pigLatingame. Enter a word you want to play with.");
+        {   //Write to console two sentences
+            Console.WriteLine("Let's play a pigLatingame.");
+            Console.WriteLine("Enter a word you want to play with.");
+            //Let the browser read the word that a user enters and declare string variable named input
             string input = Console.ReadLine();
+            //Convert all letters to lowercase and declare lowercased string as variable inputLowercase 
             string inputLowercase = input.ToLower();
+            //declare char variable vowels set to be an array of vowels
             char[] vowels = { 'a', 'e', 'i', 'o', 'u' };
-            int index = input.IndexOfAny(vowels);
-            string beforeIndex = inputLowercase.Substring(0, index - 1);
+            //decare int variable index to be set to index number of first occurrence of any vowel in the string imputLowercase
+            int index = inputLowercase.IndexOfAny(vowels);
+            //declare string variable beforeIndex to be set to the substring which starts from a letter of index 0 and continue to as many letters as the number of index
+            string beforeIndex = inputLowercase.Substring(0, index);
+            //declare string variable afterIndex to be set to the substring which starts from a letter of index number and continue to the end of the string
             string afterIndex = inputLowercase.Substring(index);
             string space = " ";
-            Console.WriteLine("Your pigLatin is" + space + afterIndex + beforeIndex + "ay");
+            //declare lastCharacter to set to the last letter of the input string
+            char lastCharacter = inputLowercase[inputLowercase.Length - 1];
+            //declare firstCharacter to set to the first letter of the input string
+            char firstCharacter = inputLowercase[0];
+            if ((firstCharacter) && (lastCharacter === vowels))
+
+
+
+                Console.WriteLine("Your pigLatin is" + space + afterIndex + beforeIndex + "ay");
+            Console.WriteLine(firstCharacter + space + lastCharacter);
         }
     }
 }
