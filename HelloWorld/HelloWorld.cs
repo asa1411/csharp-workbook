@@ -54,7 +54,7 @@ namespace HelloWorld
             Console.WriteLine(f.GetType());
         }
         static void Question5(string[] args)
-        {
+        {//To write a decimal value, m or M is required to follow the decimal number
             decimal myDecimal = 345.0m;
             Console.WriteLine(myDecimal.GetType());
             Console.WriteLine(myDecimal);
