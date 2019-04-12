@@ -6,23 +6,25 @@ namespace HelloWorld
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Enter a number");
+            //ask for one of three hands, R for rock, P for paper, S for scissors
+            //take the hand
+            //randomly let the computer pick one hand among R, P, and S
+            //compare hand of input with hand that computer randomly picked
+            //declare which hand wins
 
-            int input = Convert.ToInt32(Console.ReadLine());
-            if (input > 0)
-            {
+            Console.WriteLine("Enter a hand, R for Rock, P for Paper, S for Scissors");
+            string hand1 = Console.ReadLine().ToLower();
+            Random hand2Generator = new Random ();
+            int randomHand = hand2Generator.Next(0,3);
+            string hand2 = (string)randomHand;
+            if(randomHand==0){hand2="r";}
+            Console.WriteLine(compareHands(hand1, hand2));
+            Console.ReadLine ();
 
-                Console.WriteLine("positive");
+        }
+        public static string compareHands(string hand1 string hand2)
+        {
 
-            }
-            else if (input < 0)
-            {
-                Console.WriteLine("negative");
-            }
-            else
-            {
-                Console.WriteLine("zero");
-            }
         }
     }
 }
