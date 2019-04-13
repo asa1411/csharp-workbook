@@ -8,8 +8,26 @@ namespace RockPaperScissors
         {
             Console.WriteLine("Enter hand 1:");
             string hand1 = Console.ReadLine().ToLower();
-            Console.WriteLine("Enter hand 2:");
-            string hand2 = Console.ReadLine().ToLower();
+            Random hand2Generator = new Random();
+            int randomHand = hand2Generator.Next(0, 3);
+
+            string hand2 = randomHand.ToString();
+            if (randomHand == 0)
+            {
+                hand2 = "rock";
+
+            }
+            else if (randomHand == 1)
+            {
+                hand2 = "scissors";
+            }
+            else
+            {
+                hand2 = "paper";
+
+            }
+            Console.WriteLine("The hand of play2 is " + hand2);
+            
             Console.WriteLine(CompareHands(hand1, hand2));
 
             // leave this command at the end so your program does not close automatically
