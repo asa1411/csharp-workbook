@@ -36,11 +36,15 @@ namespace PigLatin
             {//then add ay to the word
                 Console.WriteLine("Your pigLatin is" + space + input + "ay");
             }
-            else
+
+            else if (index > 0)
             {//if the first letter of the word is not a vowel, then the segment before the first vowel goes back to the the segment after the first vowel and add ay to the switched word
                 Console.WriteLine("Your pigLatin is" + space + afterIndex + beforeIndex + "ay");
             }
-
+            else
+            {
+                Console.WriteLine("Your pigLatin is" + space + input + "ay");
+            }
             // leave this command at the end so your program does not close automatically
             Console.ReadLine();
         }
