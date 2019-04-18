@@ -1,13 +1,14 @@
-﻿using System;
+using System;
 
-namespace FizzBuzz
+namespace FizzBuzz2
 {
-    class Program
+    public class Program2
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            int counter = 1;
-            while (counter <= 100)
+
+            for (int counter = 1; counter <= 100; counter++)
+
             {
                 if (counter % 3 == 0 && counter % 5 != 0)
                 {
@@ -22,7 +23,7 @@ namespace FizzBuzz
                     Console.WriteLine("fizz buzz");
                 }
                 else { Console.WriteLine(counter); }
-                counter++;
+
             }
         }
     }
