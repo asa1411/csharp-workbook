@@ -33,14 +33,17 @@ namespace TicTacToe
             int row = int.Parse(Console.ReadLine());
             Console.WriteLine("Enter Column:");
             int column = int.Parse(Console.ReadLine());
+            playerTurn = (playerTurn == "X") ? "O" : "X";
             PlaceMark(row, column);
+
+
         }
 
         public static void PlaceMark(int row, int column)
         {
             // your code goes here
             board[row][column] = playerTurn;
-            playerTurn = (playerTurn == "X") ? "O" : "X";
+
         }
 
         public static bool CheckForWin()
@@ -51,15 +54,32 @@ namespace TicTacToe
             bool DW = DiagonalWin();
             if (HW || VW || DW)
             {
-                Console.WriteLine("Player" + playerTurn + "won!");
+                DrawBoard();
+                Console.WriteLine("Player " + playerTurn + " won!");
+
+                return true;
             }
-            else {return false;}
+            else { return false; }
 
 
         }
         public static bool CheckForTie()
         {
             // your code goes here
+            if (board[0][0] == playerTurn &&
+            board[0][1] == playerTurn &&
+            board[0][2] == playerTurn &&
+            board[1][0] == playerTurn &&
+            board[1][1] == playerTurn &&
+            board[1][2] == playerTurn &&
+            board[2][0] == playerTurn &&
+            board[2][1] == playerTurn &&
+            board[2][2] == playerTurn)
+            {
+                Console.WriteLine("It's a tie.");
+                return true;
+
+            }
 
             return false;
         }
