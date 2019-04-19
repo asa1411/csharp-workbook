@@ -28,15 +28,14 @@ namespace TicTacToe
         }
 
         public static void GetInput()
-        {   //ternary condition to switch player turn
-            // playerTurn = (playerTurn == "X") ? "O" : "X";
-            //pass row and column to PlaceMark method
+        {   
+            
             Console.WriteLine("Player " + playerTurn);
             Console.WriteLine("Enter Row:");
             int row = int.Parse(Console.ReadLine());
             Console.WriteLine("Enter Column:");
             int column = int.Parse(Console.ReadLine());
-            PlaceMark(row, column);
+            PlaceMark(row, column);//pass row and column to PlaceMark method
         }
 
         public static void PlaceMark(int row, int column)
@@ -67,7 +66,6 @@ namespace TicTacToe
             bool DW = DiagonalWin();
             if (HW || VW || DW)
             {
-                // DrawBoard();
                 Console.WriteLine("Player " + playerTurn + " won!");
 
                 return true;
@@ -98,7 +96,7 @@ namespace TicTacToe
         }
 
         public static bool HorizontalWin()
-        {//If three cells of each row are entered by playTurn which is O or X, it is declared "win"
+        {//If three cells of each row are entered by playerTurn which is either O or X, it is declared "win"
             if (
                 (board[0][0] == playerTurn && board[0][1] == playerTurn && board[0][2] == playerTurn
                ) ||
