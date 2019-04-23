@@ -5,12 +5,28 @@ namespace Checkpoint1
 {
     class Program
     {
-        static void Temp(string[] args)
+        static void Main()
         {
 
-            Console.WriteLine("Hello World?");
+            Console.WriteLine("Hello World!");
+           
+            DivisibleByThree();
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("Factorial Question");
+            //  Sum();
+            Factor();
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("Picking a random number");
+            RandomNumber();
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("Finding a maximum number");
+            Max();
+
         }
-        static void DivisibleByThree(string[] args)
+        static void DivisibleByThree()
         {//1- Write a program to count how many numbers between 1 and 100 are divisible by 3 with no remainder. Display the count on the console.
             int num1 = 0;
             int counter = 0;
@@ -29,119 +45,82 @@ namespace Checkpoint1
 
             // return counter;
         }
-        static void Practice(string[] args)
+
+        static void Sum()
         {//2- Write a program and continuously ask the user to enter a number or "ok" to exit. Calculate the sum of all the previously entered numbers and display it on the console.
             int sum = 0;
             List<string> nums = new List<string>();
-            //    int num = 0;
-            Console.WriteLine("Please enter a number or enter ok to exit");
+            Console.WriteLine("Enter a number or enter ok to exit");
             string response = Console.ReadLine();
-            // string response2 = "";
-            nums.Add(response);
-            // Console.WriteLine("Please enter a number or enter ok to exit");
 
-            // response2 = Console.ReadLine();
 
-            // nums.Add(response2);
-            foreach (string item in nums)
             {
-                bool result = Int32.TryParse(item, out sum);
+                bool result = Int32.TryParse(response, out sum);
 
                 if (result)
                 {
-                    int i = int.Parse(item);
-                    sum = sum + i;
+                    Console.WriteLine("Enter a number or enter ok to exit");
+                    response = Console.ReadLine();
+                    nums.Add(response);
 
-                    Console.WriteLine("The sum of the numbers you enter is " + sum);
+                    //    System.Threading.Thread.Sleep(1000);
                 }
-            }
-
-            while (response != "ok") ;
-            // foreach (string item in nums)
-            // {
-            //     bool result = Int32.TryParse(item, out sum);
-
-            //     if (result)
-            //     {
-            //         int i = int.Parse(item);
-            //         sum = sum + i;
-
-            //         Console.WriteLine("The sum of the numbers you enter is " + sum);
-            //     }
-            // }
-        }
-        static void Main(string[] args)
-        {//2- Write a program and continuously ask the user to enter a number or "ok" to exit. Calculate the sum of all the previously entered numbers and display it on the console.
-            List<string> s = new List<string>();
-            Console.WriteLine("Enter a number or ok");
-            string t = Console.ReadLine();
-            s.Add(t);
-            int a = 0;
-            for (a = 0; a < 10; a++)
-            {
-                if (t != "ok")
+                else
                 {
-                    Console.WriteLine("Enter another number or ok");
-                    Console.ReadLine();
-                    s.Add(t);
-                    Console.WriteLine(a);
-                    Console.WriteLine(t[0]);
-
+                    Console.WriteLine("Bye");
                 }
 
-
-
-
+            }
+            while (response != "ok") ;
+            foreach (string sn in nums)
+            {
+                int i = int.Parse(sn);
+                sum = sum + i;
 
             }
-
+            Console.WriteLine("The sum is " + sum);
 
         }
-        static int Factor(int factorial, string inputString)
+        static void Factor()
         {//Write a program and ask the user to enter a number. Compute the factorial of the number and print it on the console. For example, if the user enters 5, the program should calculate 5 x 4 x 3 x 2 x 1 and display it as 5! = 120.
 
             Console.WriteLine("Write a number, and you will get a factorial of the number.");
-            inputString = Console.ReadLine();
+            string inputString = Console.ReadLine();
 
             int input = Convert.ToInt32(inputString);
-            factorial = input;
+            int factorial = input;
 
             for (int i = 1; i < input; i++)
             {
                 factorial = factorial * (input - i);
 
             }
-            return factorial;
-            // Console.WriteLine(inputString + "! = " + factorial);
+
+            Console.WriteLine(inputString + "! = " + factorial);
 
         }
 
-        static void RandomNumber(string[] args)
+        static void RandomNumber()
         {//Write a program that picks a random number between 1 and 10. Give the user 4 chances to guess the number. If the user guesses the number, display “You won"; otherwise, display “You lost". (To make sure the program is behaving correctly, you can display the secret number on the console first.) 
             List<int> pickNumber = new List<int>();
 
             Random random = new Random();
             int num = random.Next(1, 10);
             Console.WriteLine("The number you need to pick to win is " + num);
-            Console.WriteLine("Enter a number between 1 and 10");
-            int input = int.Parse(Console.ReadLine());
-            pickNumber.Add(input);
-            Console.WriteLine("Enter another number between 1 and 10");
-            input = int.Parse(Console.ReadLine());
-            pickNumber.Add(input);
-            Console.WriteLine("Enter another number between 1 and 10");
-            input = int.Parse(Console.ReadLine());
-            pickNumber.Add(input);
-            Console.WriteLine("Enter another number between 1 and 10");
-            input = int.Parse(Console.ReadLine());
-            pickNumber.Add(input);
+            for (int i = 0; i < 4; i++)
+            {
+                Console.WriteLine("Enter a number between 1 and 10");
+                int input = int.Parse(Console.ReadLine());
+                pickNumber.Add(input);
+            }
+
 
             if (pickNumber[0] == num || pickNumber[1] == num || pickNumber[2] == num || pickNumber[3] == num)
             { Console.WriteLine("You won"); }
             else { Console.WriteLine("You lost"); }
         }
 
-        static void Max(string[] args)
+        static void Max()
         {//Write a program and ask the user to enter a series of numbers separated by comma. Find the maximum of the numbers and display it on the console. For example, if the user enters “5, 3, 8, 1, 4", the program should display 8.
             List<int> t = new List<int>();
             Console.WriteLine("Enter a series of numbers separated by comma.");
