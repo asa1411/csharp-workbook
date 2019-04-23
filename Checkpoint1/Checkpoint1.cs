@@ -9,12 +9,12 @@ namespace Checkpoint1
         {
 
             Console.WriteLine("Hello World!");
-           
+
             DivisibleByThree();
+            
             Console.WriteLine("");
             Console.WriteLine("");
             Console.WriteLine("Factorial Question");
-            //  Sum();
             Factor();
             Console.WriteLine("");
             Console.WriteLine("");
@@ -24,6 +24,10 @@ namespace Checkpoint1
             Console.WriteLine("");
             Console.WriteLine("Finding a maximum number");
             Max();
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("Sum Question");
+            Sum();
 
         }
         static void DivisibleByThree()
@@ -48,38 +52,26 @@ namespace Checkpoint1
 
         static void Sum()
         {//2- Write a program and continuously ask the user to enter a number or "ok" to exit. Calculate the sum of all the previously entered numbers and display it on the console.
-            int sum = 0;
-            List<string> nums = new List<string>();
+
             Console.WriteLine("Enter a number or enter ok to exit");
+
             string response = Console.ReadLine();
 
+            // System.Threading.Thread.Sleep(2000);
 
+            if (response == "ok")
             {
-                bool result = Int32.TryParse(response, out sum);
-
-                if (result)
-                {
-                    Console.WriteLine("Enter a number or enter ok to exit");
-                    response = Console.ReadLine();
-                    nums.Add(response);
-
-                    //    System.Threading.Thread.Sleep(1000);
-                }
-                else
-                {
-                    Console.WriteLine("Bye");
-                }
-
+                Console.WriteLine("done");
             }
-            while (response != "ok") ;
-            foreach (string sn in nums)
+            int num = Convert.ToInt32(response);
+            int sum = num;
+            while (response != "ok")
             {
-                int i = int.Parse(sn);
-                sum = sum + i;
-
+                Console.WriteLine("Enter another number or ok to exit");
+                int num2 = Convert.ToInt32(Console.ReadLine());
+                sum = sum + num2;
+                Console.WriteLine("The sum is " + sum);
             }
-            Console.WriteLine("The sum is " + sum);
-
         }
         static void Factor()
         {//Write a program and ask the user to enter a number. Compute the factorial of the number and print it on the console. For example, if the user enters 5, the program should calculate 5 x 4 x 3 x 2 x 1 and display it as 5! = 120.
