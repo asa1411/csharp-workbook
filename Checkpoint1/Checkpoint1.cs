@@ -11,7 +11,12 @@ namespace Checkpoint1
             Console.WriteLine("Hello World!");
 
             DivisibleByThree();
-            
+
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("Sum Question");
+            Sum();
+
             Console.WriteLine("");
             Console.WriteLine("");
             Console.WriteLine("Factorial Question");
@@ -24,10 +29,7 @@ namespace Checkpoint1
             Console.WriteLine("");
             Console.WriteLine("Finding a maximum number");
             Max();
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("Sum Question");
-            Sum();
+
 
         }
         static void DivisibleByThree()
@@ -57,29 +59,21 @@ namespace Checkpoint1
 
             string response = Console.ReadLine();
 
-            // System.Threading.Thread.Sleep(2000);
-
-            if (response == "ok")
-            {
-                Console.WriteLine("done");
-            }
-            int num = Convert.ToInt32(response);
-            int sum = num;
+            int sum = 0;
             while (response != "ok")
             {
-                Console.WriteLine("Enter another number or ok to exit");
-                int num2 = Convert.ToInt32(Console.ReadLine());
-                sum = sum + num2;
-                Console.WriteLine("The sum is " + sum);
+                int num = Convert.ToInt32(response);
+                sum = sum + num;
+                Console.WriteLine("Enter a number or ok to exit");
+                response = (Console.ReadLine());
             }
+            Console.WriteLine("Thank you. The sum is " + sum);
         }
         static void Factor()
         {//Write a program and ask the user to enter a number. Compute the factorial of the number and print it on the console. For example, if the user enters 5, the program should calculate 5 x 4 x 3 x 2 x 1 and display it as 5! = 120.
 
             Console.WriteLine("Write a number, and you will get a factorial of the number.");
-            string inputString = Console.ReadLine();
-
-            int input = Convert.ToInt32(inputString);
+            int input = Convert.ToInt32(Console.ReadLine());
             int factorial = input;
 
             for (int i = 1; i < input; i++)
@@ -88,7 +82,7 @@ namespace Checkpoint1
 
             }
 
-            Console.WriteLine(inputString + "! = " + factorial);
+            Console.WriteLine(input + "! = " + input);
 
         }
 
