@@ -13,13 +13,12 @@ namespace RockPaperScissors
         {//Enter and use hand1 string data
             try
             {
-            // List <string> onehand = new List<string>();
-            // onehand.Add("rock");
-            // onehand.Add("paper");
-            // onehand.Add("scissors");
+
                 Console.WriteLine("Enter hand 1:");
                 string hand1 = Console.ReadLine().ToLower();
                 //Generate random number under a name "randomHand"
+
+
                 Random hand2Generator = new Random();
                 int randomHand = hand2Generator.Next(0, 3);
                 //Assign string hand2 to rock, paper, or scissors according to the if conditions 
@@ -41,6 +40,8 @@ namespace RockPaperScissors
                 Console.WriteLine("The hand of play2 is " + hand2);
                 //execute CompareHands method with strings hand1 and hand2
                 Console.WriteLine(CompareHands(hand1, hand2));
+                Console.WriteLine(Handone(hand1));
+
 
 
                 //write the hand of computer play
@@ -77,55 +78,68 @@ namespace RockPaperScissors
                 Console.WriteLine("Thank you for playing.");
             }
         }
+        public static bool Handone(string hand1)
+        {
+            string substr1 = "rock";
+            hand1.Contains(substr1);
+            return true;
+        }
         public static string CompareHands(string hand1, string hand2)
         {
-
-            // Your code here
-            if (hand1 == hand2)
+            List<string> rps = new List<string>();
+            rps.Add("rock");
+            rps.Add("scissors");
+            rps.Add("paper");
+            if (rps.Contains(hand1))
             {
-                TieScore++;
-                return "It's a tie!";
-            }
-
-            if (hand1 == "rock")
-            {
-                if (hand2 == "scissors")
+                // Your code here
+                if (hand1 == hand2)
                 {
-                    PlayerScore++;
-                    return "Hand one wins!";
+                    TieScore++;
+                    return "It's a tie!";
                 }
-                // If we reach here, player 2 must have dealt paper
-                ComputerScore++;
-                return "Hand two wins!";
-            }
 
-            else if (hand1 == "paper")
-            {
-                if (hand2 == "rock")
+                if (hand1 == "rock")
                 {
-                    PlayerScore++;
-                    return "Hand one wins!";
+                    if (hand2 == "scissors")
+                    {
+                        PlayerScore++;
+                        return "Hand one wins!";
+                    }
+                    // If we reach here, player 2 must have dealt paper
+                    ComputerScore++;
+                    return "Hand two wins!";
                 }
-                ComputerScore++;
-                return "Hand two wins!";
-            }
 
-            else if (hand1 == "scissors")
-            {
-                if (hand2 == "paper")
+                else if (hand1 == "paper")
                 {
-                    PlayerScore++;
-                    return "Hand one wins!";
+                    if (hand2 == "rock")
+                    {
+                        PlayerScore++;
+                        return "Hand one wins!";
+                    }
+                    ComputerScore++;
+                    return "Hand two wins!";
                 }
-                ComputerScore++;
-                return "Hand two wins!";
+
+                else if (hand1 == "scissors")
+                {
+                    if (hand2 == "paper")
+                    {
+                        PlayerScore++;
+                        return "Hand one wins!";
+                    }
+                    ComputerScore++;
+                    return "Hand two wins!";
+                }
+                // else if (hand1 != "rock" || hand1 != "scissors" || hand1 != "paper")
+                // {
+                //     return "error";
+
+                // }
+                
             }
-            else if (hand1 != "rock" || hand1 != "scissors" || hand1 != "paper")
-            {
-                return "error";
-               
-            }
-            return hand1 + ' ' + hand2;
+return hand1 + ' ' + hand2;
         }
     }
 }
