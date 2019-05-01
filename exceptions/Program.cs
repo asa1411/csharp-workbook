@@ -8,9 +8,11 @@ namespace RockPaperScissors
         public static int ComputerScore;
         public static int PlayerScore;
         public static int TieScore;
+        // List<string> rps = new List<string>();
 
         public static void Main()
-        {//Enter and use hand1 string data
+        {
+            // Handone type = new Handone();
             try
             {
 
@@ -40,7 +42,7 @@ namespace RockPaperScissors
                 Console.WriteLine("The hand of play2 is " + hand2);
                 //execute CompareHands method with strings hand1 and hand2
                 Console.WriteLine(CompareHands(hand1, hand2));
-                Console.WriteLine(Handone(hand1));
+                // Console.WriteLine(Handone(hand1));
 
 
 
@@ -50,14 +52,18 @@ namespace RockPaperScissors
                 Console.WriteLine("Hand1: " + PlayerScore + " wins" + ", Hand2: " + ComputerScore + " wins" + "," + " Ties: " + TieScore);
                 //execute replay method
                 Replay();
-
+                // type.showType();
                 // leave this command at the end so your program does not close automatically
 
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                Console.WriteLine(e.Message);
+                Console.WriteLine("You typed wrong.");
             }
+            // catch (TypeException e)
+            // {
+            //     Console.WriteLine("TypingException: {0}", e.Message);
+            // }
 
             finally
             {
@@ -78,12 +84,26 @@ namespace RockPaperScissors
                 Console.WriteLine("Thank you for playing.");
             }
         }
-        public static bool Handone(string hand1)
-        {
-            string substr1 = "rock";
-            hand1.Contains(substr1);
-            return true;
-        }
+    //     public class Handone
+    //     {List<string> rps = new List<string>();
+    //         rps={"rock", "paper", "scissors"};
+    //         public void showType() {
+    //     if(rps.Contains(hand1)) {
+    //      throw (new TypeException("Typing error found"));
+    //   } else {
+    //      Console.WriteLine("Typing error: {0}");
+    //   }
+
+    //     }
+    //     }
+    //     public class TypeException : Exception
+    //     {
+
+    //         public TypeException(string message) : base(message)
+    //         {
+
+    //         }
+    //     }
         public static string CompareHands(string hand1, string hand2)
         {
             List<string> rps = new List<string>();
@@ -132,14 +152,17 @@ namespace RockPaperScissors
                     ComputerScore++;
                     return "Hand two wins!";
                 }
-                // else if (hand1 != "rock" || hand1 != "scissors" || hand1 != "paper")
-                // {
-                //     return "error";
 
-                // }
-                
+
             }
-return hand1 + ' ' + hand2;
+            else
+            {
+                throw new Exception();
+            }
+            // int g = 3;
+            // int h = 0;
+            // Console.WriteLine(g / h);
+            return hand1 + ' ' + hand2;
         }
     }
 }
