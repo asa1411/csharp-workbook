@@ -6,18 +6,23 @@ namespace OOP2
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Write your name");
+            string p1 = Console.ReadLine();
+            Person p = new Person(p1);
+
             car c1 = new car("Black", "VW", "Jetta");
+            c1.entercar(p);
             Console.WriteLine("c1={0}", c1.ToString());//c1 is an instance and nonstatic class makes it possible. 
-            car c2 = new car("Blue", "Mazda", "3");
-            Console.WriteLine("c2={0}", c2.ToString());
-            ParkingGarage p1 = new ParkingGarage(7);
-            //to put car1 to the parking garage
-            p1.parkingSlots[1] = c1;//parkingSlots are private so it can not take it. I changed it to public and now it is OK.
-            p1.parkCar(c1, 1);//pass in the car you are parking, and the postion to park it in
-                              //parkCar is nonstatic method because it takes instances
-            Console.WriteLine("is slot 1 empty? {0}", p1.isSlotAvailable(1));
-            p1.parkCar(c1, 1);
-            p1.towCar(1);
+            // car c2 = new car("Blue", "Mazda", "3");
+            // Console.WriteLine("c2={0}", c2.ToString());
+            // ParkingGarage p1 = new ParkingGarage(7);
+            // //to put car1 to the parking garage
+            // p1.parkingSlots[1] = c1;//parkingSlots are private so it can not take it. I changed it to public and now it is OK.
+            // p1.parkCar(c1, 1);//pass in the car you are parking, and the postion to park it in
+            //                   //parkCar is nonstatic method because it takes instances
+            // Console.WriteLine("is slot 1 empty? {0}", p1.isSlotAvailable(1));
+            // p1.parkCar(c1, 1);
+            // p1.towCar(1);
             //All the above was deleted
             ParkingGarage parkingGarage = null;
             while (parkingGarage == null)
@@ -43,19 +48,28 @@ namespace OOP2
         public string model { get; private set; }
         public string color { get; private set; }
         public int year { get; private set; }
+        public Person[] passenger;
+
         public car(String initialColor, string initialMake, string initialModel)
         {
             this.color = initialColor;
             this.make = initialMake;
             this.model = initialModel;
+            passenger = new Person[4];
         }
+        public void entercar(Person p)
+        {
+            passenger[0] = p;
+        }
+
+        public string ToString()
+        {
+            String stringRepresentation =
+            String.Format("{0} {1} {2} {3}", this.color, this.make, this.model, passenger[0].names);
+            return stringRepresentation;
+        }
+
     }
-    // public string ToString()
-    // {
-    //     String stringRepresentation =
-    //     String.Format("{0} {1} {2}", this.color, this.make, this.model);
-    //     return stringRepresentation;
-    // }
     public class ParkingGarage
     {
         public int numSpaces { get; private set; }
@@ -99,5 +113,13 @@ namespace OOP2
             return c;//whatever or wherever is called on, it will execute this return
         }
 
+    }
+    public class Person
+    {
+        public string names;
+        public Person(string initialName)
+        {
+            names = initialName;
+        }
     }
 }
