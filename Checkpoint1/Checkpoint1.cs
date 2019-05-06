@@ -78,32 +78,39 @@ namespace Checkpoint1
 
             for (int i = 1; i < input; i++)
             {
-                factorial = factorial * (input - i);
+                factorial = factorial * i;
 
             }
 
-            Console.WriteLine(input + "! = " + input);
+            Console.WriteLine(input + "! = " + factorial);
 
         }
 
         static void RandomNumber()
         {//Write a program that picks a random number between 1 and 10. Give the user 4 chances to guess the number. If the user guesses the number, display “You won"; otherwise, display “You lost". (To make sure the program is behaving correctly, you can display the secret number on the console first.) 
-            List<int> pickNumber = new List<int>();
+            // List<int> pickNumber = new List<int>();
 
             Random random = new Random();
-            int num = random.Next(1, 10);
+            int num = random.Next(1, 11);
             Console.WriteLine("The number you need to pick to win is " + num);
-            for (int i = 0; i < 4; i++)
+            Console.WriteLine("Enter a number between 1 and 10");
+            int input = int.Parse(Console.ReadLine());
+            int counter = 0;
+
+
+            while (num != input && counter != 3)
             {
                 Console.WriteLine("Enter a number between 1 and 10");
-                int input = int.Parse(Console.ReadLine());
-                pickNumber.Add(input);
+                input = int.Parse(Console.ReadLine());
+                counter++;
             }
-
-
-            if (pickNumber[0] == num || pickNumber[1] == num || pickNumber[2] == num || pickNumber[3] == num)
+            if (num == input)
             { Console.WriteLine("You won"); }
-            else { Console.WriteLine("You lost"); }
+
+            else { Console.WriteLine("You lost."); }
+
+
+
         }
 
         static void Max()
