@@ -63,7 +63,7 @@ namespace Mastermind {
                     Console.Write (row.Balls);
                     Console.WriteLine (Score (row));
                 }
-                
+             return "";   
             }
         }
     }
