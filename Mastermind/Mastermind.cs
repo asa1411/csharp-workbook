@@ -1,92 +1,123 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Mastermind {
-    class Program {
-        static void Main (string[] args) {
-            Game game = new Game (new string[] { "a", "b", "c", "d" });
-            for (int turns = 10; turns > 0; turns--) {
+namespace Mastermind
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Game game = new Game(new string[] { "a", "b", "c", "d" });
+            for (int turns = 10; turns > 0; turns--)
+            {
                 Console.WriteLine($"You have {turns} tries left");
-                Console.WriteLine ("Choose four letters: ");
-                string letters = Console.ReadLine ();
+                Console.WriteLine("Choose four letters: ");
+                string letters = Console.ReadLine();
                 Ball[] balls = new Ball[4];
-                for (int i = 0; i < 4; i++) {
-                    balls[i] = new Ball (letters[i].ToString());
+                for (int i = 0; i < 4; i++)
+                {
+                    balls[i] = new Ball(letters[i].ToString());
                 }
-                Row row = new Row (balls);
-                game.AddRow (row);
-                Console.WriteLine (game.Rows);
+                Row row = new Row(balls);
+                game.AddRow(row);
+                Console.WriteLine(game.Rows);
             }
-            Console.WriteLine ("Out Of Turns");
+            Console.WriteLine("Out Of Turns");
+
         }
     }
 
-    class Game {
-        private List<Row> rows = new List<Row> ();
+    class Game
+    {
+        private List<Row> rows = new List<Row>();
         private string[] answer = new string[4];
 
-        public Game (string[] answer) {
+        public Game(string[] answer)
+        {
             this.answer = answer;
         }
 
-        private string Score (Row row) {
-            string[] answerClone = (string[]) this.answer.Clone ();
+        private string Score(Row row)
+        {
+            string[] answerClone = (string[])this.answer.Clone();
             // red is correct letter and correct position
             // white is correct letters minus red
             // this.answer => ["a", "b", "c", "d"]
             // row.balls => [{ Letter: "c" }, { Letter: "b" }, { Letter: "d" }, { Letter: "a" }]
             int red = 0;
-            for (int i = 0; i < 4; i++) {
-                if (answerClone[i] == row.balls[i].Letter) {
+            for (int i = 0; i < 4; i++)
+            {
+                if (answerClone[i] == row.balls[i].Letter)
+                {
                     red++;
                 }
             }
-
+            if (red == 4)
+            {
+                return "You won.";
+            }
             int white = 0;
-            for (int i = 0; i < 4; i++) {
-                int foundIndex = Array.IndexOf (answerClone, row.balls[i].Letter);
-                if (foundIndex > -1) {
+            for (int i = 0; i < 4; i++)
+            {
+                int foundIndex = Array.IndexOf(answerClone, row.balls[i].Letter);
+                if (foundIndex > -1)
+                {
                     white++;
                     answerClone[foundIndex] = null;
+                    //what function does this do?
                 }
             }
             return $" {red} - {white - red}";
+        }//What does this return do?
+         // public string Win ()
+         // {
+         //     string win = string.Format ("You{0} won",rows);
+         // }
+        public void AddRow(Row row)
+        {
+            this.rows.Add(row);
         }
 
-        public void AddRow (Row row) {
-            this.rows.Add (row);
-        }
-
-        public string Rows {
-            get {
-                foreach (var row in this.rows) {
-                    Console.Write (row.Balls);
-                    Console.WriteLine (Score (row));
+        public string Rows
+        {
+            get
+            {
+                foreach (var row in this.rows)
+                {
+                    Console.Write(row.Balls);
+                    Console.WriteLine(Score(row));
                 }
-             return "";   
+                return "";
             }
         }
     }
 
-    class Ball {
+    class Ball
+    {
         public string Letter { get; private set; }
 
-        public Ball (string letter) {
+        public Ball(string letter)
+        {
             this.Letter = letter;
         }
     }
 
-    class Row {
+    class Row
+    {
         public Ball[] balls = new Ball[4];
 
-        public Row (Ball[] balls) {
+        public Row(Ball[] balls)
+        {
             this.balls = balls;
         }
 
-        public string Balls {
-            get {
-                foreach (var ball in this.balls) {
-                    Console.Write (ball.Letter);
+        public string Balls
+        {
+            get
+            {
+                foreach (var ball in this.balls)
+                {
+                    Console.Write(ball.Letter);
                 }
                 return "";
             }
