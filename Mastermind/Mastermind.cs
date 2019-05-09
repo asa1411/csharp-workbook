@@ -8,6 +8,7 @@ namespace Mastermind
         static void Main(string[] args)
         {
             Game game = new Game(new string[] { "a", "b", "c", "d" });
+           
             for (int turns = 10; turns > 0; turns--)
             {
                 Console.WriteLine($"You have {turns} tries left");
@@ -21,6 +22,11 @@ namespace Mastermind
                 Row row = new Row(balls);
                 game.AddRow(row);
                 Console.WriteLine(game.Rows);
+                if (row.balls[0].Letter == "a" && row.balls[1].Letter == "b" && row.balls[2].Letter == "c" && row.balls[3].Letter == "d")
+                {
+                    Console.WriteLine("You won.");
+                    break;
+                }
             }
             Console.WriteLine("Out Of Turns");
 
@@ -35,6 +41,11 @@ namespace Mastermind
         public Game(string[] answer)
         {
             this.answer = answer;
+        }
+        public int RandomSolution() //give a random answer for the game
+        {
+           Random random = new Random(Array.IndexOf(this.answer));
+           return random.Next(1,5);
         }
 
         private string Score(Row row)
@@ -52,10 +63,7 @@ namespace Mastermind
                     red++;
                 }
             }
-            if (red == 4)
-            {
-                return "You won.";
-            }
+
             int white = 0;
             for (int i = 0; i < 4; i++)
             {
@@ -67,12 +75,10 @@ namespace Mastermind
                     //what function does this do?
                 }
             }
+            // Console.WriteLine("");
             return $" {red} - {white - red}";
-        }//What does this return do?
-         // public string Win ()
-         // {
-         //     string win = string.Format ("You{0} won",rows);
-         // }
+        }
+
         public void AddRow(Row row)
         {
             this.rows.Add(row);
@@ -121,6 +127,7 @@ namespace Mastermind
                 }
                 return "";
             }
+            
         }
     }
 }
