@@ -12,34 +12,41 @@ namespace inheritance
             Car delorian = new Car("Delorian", 88);
             Car mysteryMachine = new Car("Mystery Machine", 102.5);
 
-            List<Car> cars = new List<Car>();
-            cars.Add(bigBlue);
-            cars.Add(herby);
-            cars.Add(delorian);
-            cars.Add(mysteryMachine);
+            List<IRace> racers = new List<IRace>();
+            racers.Add(bigBlue);
+            racers.Add(herby);
+            racers.Add(delorian);
+            racers.Add(mysteryMachine);
 
-            foreach (Car c1 in cars)
+            foreach (IRace r1 in racers)
             {
-                foreach (Car c2 in cars)
+                foreach (IRace r2 in racers)
                 {
-                    Car winner = race(c1, c2);
-                    Console.WriteLine("{0} vs {1} = {2}", c1, c2, winner);
+                    IRace winner = race(r1, r2);
+                    Console.WriteLine("{0} vs {1} = {2}", r1, r2, winner);
                 }
             }
         }
-        public static Car race(Car c1, Car c2)
+        public static IRace race(IRace r1, IRace r2)
         {
-            if (c1.speedMPH > c2.speedMPH)
+            if (r1.speedMPH > r2.speedMPH)
             {
-                return c1;
+                return r1;
             }
             else
             {
-                return c2;
+                return r2;
             }
         }
     }
-    class Car
+    //interface implementation
+    public interface IRace
+    {
+        double getSpeedMPH();
+        //how to use getCelebrateMessage method 
+        // string getCelebrateMessage();
+    }
+    class Car : IRace
     {
         public string name { get; set; }
         public double speedMPH;
@@ -54,6 +61,41 @@ namespace inheritance
             String s = String.Format($"{this.name} {this.speedMPH}");
             return s;
         }
+        //needs this for interface
+        public double getSpeedMPH()
+        {
+            return this.speedMPH;
+        }
+        //here you go
+        public string getCelebrateMessage()
+        {
+            return string.Format("My name is {0},  I am the greatest", this.name);
+        }
+        //you extend one class, but implements many interfaces
+    }
 
+    public class Person : IRace
+    {
+        public String name { get; private set; }
+        public double speedMPM { get; private set; }
+        public Person(String initialName, double initialSpeed)
+        {
+            this.name = initialName;
+            this.speedMPM = initialSpeed;
+        }
+        override
+        public String ToString()
+        {
+            return this.name;
+        }
+        public double getSpeedMPH()
+        {
+            return (speedMPM / 60) * 1609;
+        }
     }
 }
+//1 interface
+//3 classes + your program class (driver)
+//internal store price per unit of time differently for each class
+//but you interface should have a single pricePerDay() method, that is used to print your inventory
+//gira, sprints, hansoft ---agile method/strategy
