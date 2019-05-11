@@ -11,12 +11,15 @@ namespace inheritance
             Car herby = new Car("Herby", 40);
             Car delorian = new Car("Delorian", 88);
             Car mysteryMachine = new Car("Mystery Machine", 102.5);
-
+            Person Alson = new Person("Alison", 100);
+            Person Mary = new Person("Mary", 70);
             List<IRace> racers = new List<IRace>();
             racers.Add(bigBlue);
             racers.Add(herby);
             racers.Add(delorian);
             racers.Add(mysteryMachine);
+            racers.Add(Alson);
+            racers.Add(Mary);
 
             foreach (IRace r1 in racers)
             {
@@ -29,7 +32,7 @@ namespace inheritance
         }
         public static IRace race(IRace r1, IRace r2)
         {
-            if (r1.speedMPH > r2.speedMPH)
+            if (r1.getSpeedMPH() > r2.getSpeedMPH())
             {
                 return r1;
             }
@@ -83,15 +86,17 @@ namespace inheritance
             this.name = initialName;
             this.speedMPM = initialSpeed;
         }
+        public double getSpeedMPH()
+        {
+            return (speedMPM / 1609) * 60;
+        }
         override
         public String ToString()
         {
-            return this.name;
+            string p = string.Format($"{this.name} {this.speedMPM}");
+            return p;
         }
-        public double getSpeedMPH()
-        {
-            return (speedMPM / 60) * 1609;
-        }
+
     }
 }
 //1 interface
