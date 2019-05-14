@@ -9,17 +9,25 @@ namespace inheritance
         {
             Game game = new Game(new Dictionary<string, Tower>());
             /* Then you should generate four Blocks, each with a different weight, and Push, then into stack A.*/
-            Block b1 = new Block(1);
-            Block b2 = new Block(2);
-            Block b3 = new Block(3);
-            Block b4 = new Block(4);
-
-            game.towers["A"].blocks.Push(b1);
-            game.towers["A"].blocks.Push(b2);
-            game.towers["A"].blocks.Push(b3);
-            game.towers["A"].blocks.Push(b4);
-
+            Console.WriteLine("How many blocks for the game?");
+            int num = int.Parse(Console.ReadLine());
+            for (int i = num; i > 0; i--)
+            {
+                Block b = new Block(i);
+                game.towers["A"].blocks.Push(b);
+            }
             game.PrintBoard();
+            bool won = false;
+            while (!won)
+            {
+                Console.WriteLine("From what tower do you move a disk? A, B or C");
+                string from = Console.ReadLine();
+                Console.WriteLine("What tower do you want to move to? A, B or C");
+                string to = Console.ReadLine();
+                game.MovePiece(game.towers[from], game.towers[to]);//to access a key in a dictionary which is Tower              
+                game.PrintBoard();
+                won = game.CheckforWin();
+            }
 
         }
     }
@@ -64,5 +72,46 @@ namespace inheritance
             }
 
         }
+        /* In your Game class, write a method MovePiece that takes a popOff and pushOn string of the towers you want to move the block between; game.MovePiece("A", "B"). This method will Pop off the last block from the first tower, set it to a variable, and push that block onto the second tower. Try moving a block and then printing out the game board.*/
+        public string MovePiece(Tower From, Tower To)
+        {
+            if (IsLegal(From, To))
+
+            {
+                Block b = From.blocks.Pop();
+                To.blocks.Push(b);
+                return ("");
+            }
+            else
+            {
+                return ("It's invalid input. Try again.");
+            }
+        }
+        /*On your Game class IsLegal() takes two arguments, popOff and pushOn, and will Peek to see if the block being moved, from the popOff stack is smaller than last block in pushOn stack. return true; if it is allowed, otherwise, return false;. Also, don't forget to think about if the pushOn stack is empty, you may put any block there. Put this check before your MovePiece() function. */
+        public bool IsLegal(Tower From, Tower To)
+        {
+            Block popOff = From.blocks.Peek();//looking at it
+            Block pushOn = To.blocks.Peek();
+            if (pushOn == null)
+            { return true; }
+
+            else if (popOff.weight < pushOn.weight)
+            { return true; }
+            else
+            {
+                return false;
+            }
+        }
+        public bool CheckforWin()
+        {//n CheckForWin() on the Game class, you can simply check if the B stack or C stack has a .Count() of 4, then log out a message like "You Won!!!" and return true; if a win is detected, or a false if not.
+            if (towers["B"].blocks.Count == 4 || towers["C"].blocks.Count == 4)
+            {
+                Console.WriteLine("You won");
+                return true;
+            }
+            else
+            { return false; }
+        }
+
     }
 }
