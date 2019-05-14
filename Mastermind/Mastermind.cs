@@ -44,7 +44,7 @@ namespace Mastermind
         }
         public int RandomSolution() //give a random answer for the game
         {
-           Random random = new Random(Array.IndexOf(this.answer));
+           Random random = new Random(Array.IndexOf(rows, answer));//this should be solved.
            return random.Next(1,5);
         }
 
