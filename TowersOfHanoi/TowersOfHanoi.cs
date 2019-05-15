@@ -41,10 +41,10 @@ namespace TowerOfHanoi
     }
     class Tower
     {
-        public Stack<Block> blocks = new Stack<Block>();
-        public Tower(Stack<Block> initialblocks)
+        public Stack<Block> blocks;
+        public Tower()
         {
-            this.blocks = initialblocks;
+            this.blocks = new Stack<Block>();
         }
 
     }
@@ -53,9 +53,22 @@ namespace TowerOfHanoi
         public Dictionary<string, Tower> towers = new Dictionary<string, Tower>();//key is string "A", "B", "C", and value is instances of Tower
         public Game()
         {
-            towers.Add("A", new Tower(new Stack<Block>()));//instantiate stack of blocks
-            towers.Add("B", new Tower(new Stack<Block>()));
-            towers.Add("C", new Tower(new Stack<Block>()));
+            Tower towerA = new Tower();
+            Tower towerB = new Tower();
+            Tower towerC = new Tower();
+            Block block1 = new Block(1);
+            Block block2 = new Block(2);
+            Block block3 = new Block(3);
+            Block block4 = new Block(4);
+            towerA.blocks.Push(block4);
+            towerA.blocks.Push(block3);
+            towerA.blocks.Push(block2);
+            towerA.blocks.Push(block1);
+            towers.Add("A", towerA);
+            towers.Add("B", towerB);
+            towers.Add("C", towerC);
+
+            
         }
         //In your Game class, add a method that iterates over the Keys of your Towers, and prints out the Tower key ("A", "B", "C") and the block weights in each tower.
         public void PrintBoard()
