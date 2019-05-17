@@ -6,112 +6,97 @@ namespace inheritance
     class Program
     {
         static void Main(string[] args)
-        {
-            Game game = new Game(new Dictionary<string, Tower>());
-            /* Then you should generate four Blocks, each with a different weight, and Push, then into stack A.*/
-            Console.WriteLine("How many blocks for the game?");
-            int num = int.Parse(Console.ReadLine());
-            for (int i = num; i > 0; i--)
-            {
-                Block b = new Block(i);
-                game.towers["A"].blocks.Push(b);
-            }
-            game.PrintBoard();
-            bool won = false;
-            while (!won)
-            {
-                Console.WriteLine("From what tower do you move a disk? A, B or C");
-                string from = Console.ReadLine();
-                Console.WriteLine("What tower do you want to move to? A, B or C");
-                string to = Console.ReadLine();
-                game.MovePiece(game.towers[from], game.towers[to]);//to access a key in a dictionary which is Tower              
-                game.PrintBoard();
-                won = game.CheckforWin();
-            }
 
-        }
-    }
-    class Block
-    {
-        public int weight { get; private set; }
-        public Block(int initialWeight)
-        {
-            this.weight = initialWeight;
-        }
-    }
-    class Tower
-    {
-        public Stack<Block> blocks = new Stack<Block>();
-        public Tower(Stack<Block> initialblocks)
-        {
-            this.blocks = initialblocks;
-        }
+        {//make a list of cars
+            Car bigBlue = new Car("Big Blue", 102.40);
+            Car herby = new Car("Herby", 40);
+            Car delorian = new Car("Delorian", 88);
+            Car mysteryMachine = new Car("Mystery Machine", 102.5);
 
-    }
-    class Game
-    {
-        public Dictionary<string, Tower> towers = new Dictionary<string, Tower>();//key is string "A", "B", "C", and value is instances of Tower
-        public Game(Dictionary<string, Tower> initialTowers)
-        {
-            this.towers = initialTowers;
-            towers.Add("A", new Tower(new Stack<Block>()));//instantiate stack of blocks
-            towers.Add("B", new Tower(new Stack<Block>()));
-            towers.Add("C", new Tower(new Stack<Block>()));
-        }
-        //In your Game class, add a method that iterates over the Keys of your Towers, and prints out the Tower key ("A", "B", "C") and the block weights in each tower.
-        public void PrintBoard()
-        {
-            foreach (KeyValuePair<string, Tower> tower in this.towers)
+            List<IRace> racers = new List<IRace>();
+            racers.Add(bigBlue);
+            racers.Add(herby);
+            racers.Add(delorian);
+            racers.Add(mysteryMachine);
+
+            foreach (IRace r1 in racers)
             {
-                Console.WriteLine("tower {0}: ", tower.Key);
-                foreach (Block block in tower.Value.blocks)
+                foreach (IRace r2 in racers)
                 {
-                    Console.WriteLine(block.weight);
+                    IRace winner = race(r1, r2);
+                    Console.WriteLine("{0} vs {1} = {2}", r1, r2, winner);
                 }
-                System.Console.WriteLine("");
             }
-
         }
-        /* In your Game class, write a method MovePiece that takes a popOff and pushOn string of the towers you want to move the block between; game.MovePiece("A", "B"). This method will Pop off the last block from the first tower, set it to a variable, and push that block onto the second tower. Try moving a block and then printing out the game board.*/
-        public string MovePiece(Tower From, Tower To)
+        public static IRace race(IRace r1, IRace r2)
         {
-            if (IsLegal(From, To))
-
+            if (r1.speedMPH > r2.speedMPH)
             {
-                Block b = From.blocks.Pop();
-                To.blocks.Push(b);
-                return ("");
+                return r1;
             }
             else
             {
-                return ("It's invalid input. Try again.");
+                return r2;
             }
         }
-        /*On your Game class IsLegal() takes two arguments, popOff and pushOn, and will Peek to see if the block being moved, from the popOff stack is smaller than last block in pushOn stack. return true; if it is allowed, otherwise, return false;. Also, don't forget to think about if the pushOn stack is empty, you may put any block there. Put this check before your MovePiece() function. */
-        public bool IsLegal(Tower From, Tower To)
+    }
+    //interface implementation
+    public interface IRace
+    {
+        double getSpeedMPH();
+        //how to use getCelebrateMessage method 
+        // string getCelebrateMessage();
+    }
+    class Car : IRace
+    {
+        public string name { get; set; }
+        public double speedMPH;
+        public Car(string initialName, double initialSpeed)
         {
-            Block popOff = From.blocks.Peek();//looking at it
-            Block pushOn = To.blocks.Peek();
-            if (pushOn == null)
-            { return true; }
-
-            else if (popOff.weight < pushOn.weight)
-            { return true; }
-            else
-            {
-                return false;
-            }
+            this.name = initialName;
+            this.speedMPH = initialSpeed;
         }
-        public bool CheckforWin()
-        {//n CheckForWin() on the Game class, you can simply check if the B stack or C stack has a .Count() of 4, then log out a message like "You Won!!!" and return true; if a win is detected, or a false if not.
-            if (towers["B"].blocks.Count == 4 || towers["C"].blocks.Count == 4)
-            {
-                Console.WriteLine("You won");
-                return true;
-            }
-            else
-            { return false; }
+        override
+        public String ToString()
+        {
+            String s = String.Format($"{this.name} {this.speedMPH}");
+            return s;
         }
+        //needs this for interface
+        public double getSpeedMPH()
+        {
+            return this.speedMPH;
+        }
+        //here you go
+        public string getCelebrateMessage()
+        {
+            return string.Format("My name is {0},  I am the greatest", this.name);
+        }
+        //you extend one class, but implements many interfaces
+    }
 
+    public class Person : IRace
+    {
+        public String name { get; private set; }
+        public double speedMPM { get; private set; }
+        public Person(String initialName, double initialSpeed)
+        {
+            this.name = initialName;
+            this.speedMPM = initialSpeed;
+        }
+        override
+        public String ToString()
+        {
+            return this.name;
+        }
+        public double getSpeedMPH()
+        {
+            return (speedMPM / 60) * 1609;
+        }
     }
 }
+//1 interface
+//3 classes + your program class (driver)
+//internal store price per unit of time differently for each class
+//but you interface should have a single pricePerDay() method, that is used to print your inventory
+//gira, sprints, hansoft ---agile method/strategy
