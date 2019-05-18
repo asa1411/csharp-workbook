@@ -21,7 +21,7 @@ namespace OOP3
             canesCars.Add(f150);
             canesCars.Add(f1674);
             jimmiesCars.PrintInventory();
-            // canesCars.PrintInventory();
+            canesCars.PrintInventory();
 
         }
 
@@ -41,24 +41,19 @@ namespace OOP3
             inventory.Add(vehicle);
         }
 
+
         public void PrintInventory()
         {
-            Console.WriteLine("Vehicles of CarLot {0}:, {1}", "A", inventory.Count);
+
             foreach (var a in inventory)
             {
-                
+
                 Console.WriteLine("{0}, {1}, {2}, {3}", a.licenseNumber, a.make, a.model, a.price);
             }
-            
 
+            Console.WriteLine("Vehicles of CarLot:, {0}", inventory.Count);
         }
-        override
-        public String ToString()
-        {
-            String t = string.Format("inventory: {0}; ", "jimmiescar");
-            // code goes here
-            return t;
-        }
+
     }
 
     public abstract class Vehicle
