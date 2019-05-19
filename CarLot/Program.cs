@@ -23,6 +23,8 @@ namespace OOP3
             jimmiesCars.PrintInventory();
             canesCars.PrintInventory();
 
+
+
         }
 
     }
@@ -37,19 +39,32 @@ namespace OOP3
 
         public void Add(Vehicle vehicle)
         {
-            // code goes here .
+            // add vehicles to inventory list .
             inventory.Add(vehicle);
         }
 
 
         public void PrintInventory()
         {
-
+            //For each carlot, print all the components, i.e., license number, make, model, price  in it.
+            //for Cars, print type and number of doors in addition to them.
+            //for trucks, print size of bed in addition to them.
+            //Lastly, print number of vehicles in each car lot.
             foreach (var a in inventory)
             {
 
-                Console.WriteLine("{0}, {1}, {2}, {3}", a.licenseNumber, a.make, a.model, a.price);
+                Console.WriteLine("License Number: {0}, Make: {1}, Model: {2}, Price: {3}", a.licenseNumber, a.make, a.model, a.price);
+               
+                if (a.GetType() == typeof(Car))
+                {
+                    Console.WriteLine(a.ToString());
+                }
+                else
+                {
+                    Console.WriteLine(a.ToString());
+                }
             }
+            
 
             Console.WriteLine("Vehicles of CarLot:, {0}", inventory.Count);
         }
@@ -63,6 +78,7 @@ namespace OOP3
         public string make { get; set; }
         public string model { get; set; }
         public double price { get; set; }
+//instantiate four components
         public Vehicle(int initialLicenseNumber, string initialMake, string initialModel, double initialPrice)
         {
             this.licenseNumber = initialLicenseNumber;
@@ -70,20 +86,11 @@ namespace OOP3
             this.model = initialModel;
             this.price = initialPrice;
         }
-
-        override
-        public String ToString()
-        {
-            String s = string.Format("licensenumber: {0}; make: {1}; model: {2}; price: {3}; ", licenseNumber, make, model, price);
-            // code goes here
-            return s;
-        }
-
     }
 
     public class Car : Vehicle
     {
-        // class that extends vehicle
+        // class that extends base class vehicle to child class or subclass car. 
         public string type { get; set; }
         public int numberOfDoors { get; set; }
         public Car(string initialType, int initialNumberOfDoors, int initialLicenseNumber, string initialMake, string initialModel, double initialPrice) : base(initialLicenseNumber, initialMake, initialModel, initialPrice)
@@ -91,15 +98,29 @@ namespace OOP3
             this.type = initialType;
             this.numberOfDoors = initialNumberOfDoors;
         }
+        //print two more components of car in addition to base class components
+        override
+         public string ToString()
+        {
+            string s = string.Format("type of car: {0}, number of door: {1}", type, numberOfDoors);
+            return s;
+        }
     }
 
     public class Truck : Vehicle
     {
-        // class that extends vehicle 
+        // class that extends vehicle to subclass truck
         public int bedSize { get; set; }
         public Truck(int initialBedSize, int initialLicenseNumber, string initialMake, string initialModel, double initialPrice) : base(initialLicenseNumber, initialMake, initialModel, initialPrice)
         {
             this.bedSize = initialBedSize;
+        }
+        //include this component in printout 
+        override
+        public string ToString()
+        {
+            string s = string.Format("bed size of the truck: {0}", bedSize);
+            return s;
         }
     }
 }
