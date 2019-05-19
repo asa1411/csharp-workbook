@@ -37,7 +37,7 @@ namespace OOP3
 
         public void Add(Vehicle vehicle)
         {
-            // code goes here ....
+            // code goes here .
             inventory.Add(vehicle);
         }
 
