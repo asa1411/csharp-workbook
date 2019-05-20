@@ -54,19 +54,12 @@ namespace OOP3
             {
 
                 Console.WriteLine("License Number: {0}, Make: {1}, Model: {2}, Price: {3}", a.licenseNumber, a.make, a.model, a.price);
-               
-                if (a.GetType() == typeof(Car))
-                {
-                    Console.WriteLine(a.ToString());
-                }
-                else
-                {
-                    Console.WriteLine(a.ToString());
-                }
-            }
-            
 
-            Console.WriteLine("Vehicles of CarLot:, {0}", inventory.Count);
+                Console.WriteLine(a.ToString());
+            }
+
+
+            Console.WriteLine("Vehicles of CarLot {0} :  {1}",name, inventory.Count);
         }
 
     }
@@ -78,7 +71,7 @@ namespace OOP3
         public string make { get; set; }
         public string model { get; set; }
         public double price { get; set; }
-//instantiate four components
+        //instantiate four components
         public Vehicle(int initialLicenseNumber, string initialMake, string initialModel, double initialPrice)
         {
             this.licenseNumber = initialLicenseNumber;
