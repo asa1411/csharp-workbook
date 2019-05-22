@@ -19,6 +19,7 @@ namespace week8_1
             children //starting point, person(s) come out
             .Where (p=>p.age<10)//person go in, person comes out
             .OrderBy (p =>p.age * p.name.Length) //perosn goies in, person goes out
+            //see the bottom
             .Select(p => p.name); //person goes in, string come out
 
 foreach(String s in results){
