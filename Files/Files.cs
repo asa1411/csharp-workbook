@@ -12,7 +12,7 @@ namespace Files
             System.IO.File.WriteAllLines(@"C:\Users\jungi\Desktop\words.txt", lines);//copy a file from above
             StreamReader stream = File.OpenText(@"C:\Users\jungi\Desktop\words.txt");
             
-            // String line = stream.ReadLine();
+            String line = stream.ReadLine();
             // Console.WriteLine(line); //read the first line and write it. a as the first line in the text
             // String line2 = stream.ReadLine();
             // Console.WriteLine(line2);//read the following line and write it.a and aa
@@ -20,21 +20,21 @@ namespace Files
             //     Console.WriteLine(line);
             // }
             // stream.Close();// this one gives me a character "a"
-            // foreach (String line in lines)
-            // {
-            //     Console.WriteLine(line);//Console has all lines of the text file.
-            // }
+            foreach (String line in lines)
+            {
+                Console.WriteLine(line);//Console has all lines of the text file.
+            }
 
             //I want to write into the text file.
-            FileStream outStream = File.OpenWrite(@"C:\Users\jungi\Desktop\words2.txt");//
-            StreamWriter s = new StreamWriter(outStream);
-            String line = stream.ReadLine();
-            while (line != null)
-            {
-            // Console.WriteLine(line);//write in the console
-                s.WriteLine(line);//write in the file
-                line = stream.ReadLine();//read and write all lines of the text
-            }
+            // FileStream outStream = File.OpenWrite(@"C:\Users\jungi\Desktop\words2.txt");//
+            // StreamWriter s = new StreamWriter(outStream);
+            // String line = stream.ReadLine();
+            // while (line != null)
+            // {
+            // // Console.WriteLine(line);//write in the console
+            //     s.WriteLine(line);//write in the file
+            //     line = stream.ReadLine();//read and write all lines of the text
+            // }
 
             s.Close();
             stream.Close();
