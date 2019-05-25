@@ -8,7 +8,7 @@ namespace Checkers
     class Program
     {
         static void Main(string[] args)
-        {
+        {//allowing access to symbols
             Console.OutputEncoding = System.Text.Encoding.UTF8;
 
             Game g = new Game();
@@ -19,9 +19,9 @@ namespace Checkers
 
     public class Checker
     {
-        public string Symbol { get; set; }
+        public string Symbol { get; }
         public int[] Position { get; set; }
-        public string Color { get; set; }
+        public string Color { get; }
 
         public Checker(string color, int[] position)
         {
@@ -33,11 +33,13 @@ namespace Checkers
             string closedCircle = char.ConvertFromUtf32(closedCircleId);
             if (Color == "white")
             {
-                Symbol = openCircle;
-            }
-            else
-            {
                 Symbol = closedCircle;
+
+            }
+            else if (Color == "black")
+            {
+                Symbol = openCircle;
+
             }
         }
     }
@@ -94,7 +96,7 @@ namespace Checkers
                 Checker c5 = new Checker("black", new int[] { 6, i });
                 Checkers.Add(c5);
             }
-            return;
+            // return;
         }
 
         public void PlaceCheckers()
@@ -108,6 +110,13 @@ namespace Checkers
             string[,] grid = new string[8, 8];
             //backward slash t does create evenly tab space
             Console.WriteLine("\t0 \t1 \t2 \t3 \t4 \t5 \t6 \t7");
+            foreach (Checker c in Checkers)
+            {
+                int x = c.Position[0];
+                int y = c.Position[1];
+                grid[x, y] = c.Symbol;
+
+            }
             for (int i = 0; i < 8; i++)
             {//up and down numbers from 0 to 7
                 Console.Write("{0}\t", i);
@@ -120,20 +129,40 @@ namespace Checkers
 
             }
             // Your code here
-            foreach (Checker c in Checkers)
-            {
-                int x = c.Position[0];
-                int y = c.Position[1];
-                grid[x, y] = c.Symbol;
-            }
-            return;
+
+            // return;
         }
 
         public Checker SelectChecker(int row, int column)
         {
             return Checkers.Find(x => x.Position.SequenceEqual(new List<int> { row, column }));
         }
+        public void MoveChecker()
+        {
+            Console.WriteLine("Enter pickup row.");
+            int x1 = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter pickup column");
+            int y1 = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter Placement row");
+            int x2 = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter Placement column");
+            int y2 = Convert.ToInt32(Console.ReadLine());
+            Checker c1;
+            c1 = SelectChecker(x1, y1);
+            c1.Position[0] = x2;
+            c1.Position[1] = y2;
+            DrawBoard();
+            int whiteOrBlack = 0;
+            if (c1.Color == "white")
+            {
+                whiteOrBlack = 1;
+            }
+            else if (c1.Color =="black")
+                whiteOrBlack = -1;
+            }
+            
 
+        }
         public void RemoveChecker(int row, int column)
         {
             // Your code here
@@ -153,6 +182,7 @@ namespace Checkers
             Board board = new Board();
             board.GenerateCheckers();
             board.DrawBoard();
+            board.MoveChecker();
 
             // Your code here
         }
