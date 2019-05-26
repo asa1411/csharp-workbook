@@ -139,29 +139,53 @@ namespace Checkers
         }
         public void MoveChecker()
         {
-            Console.WriteLine("Enter pickup row.");
-            int x1 = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Enter pickup column");
-            int y1 = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Enter Placement row");
-            int x2 = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Enter Placement column");
-            int y2 = Convert.ToInt32(Console.ReadLine());
-            Checker c1;
-            c1 = SelectChecker(x1, y1);
-            c1.Position[0] = x2;
-            c1.Position[1] = y2;
-            DrawBoard();
-            int whiteOrBlack = 0;
-            if (c1.Color == "white")
+            try
             {
-                whiteOrBlack = 1;
-            }
-            else if (c1.Color =="black")
-                whiteOrBlack = -1;
-            }
-            
+                Console.WriteLine("Enter pickup row.");
+                int x1 = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Enter pickup column");
+                int y1 = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Enter Placement row");
+                int x2 = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Enter Placement column");
+                int y2 = Convert.ToInt32(Console.ReadLine());
+                Checker c1;
+                // Checker c2;
+                c1 = SelectChecker(x1, y1);
+                // c2 = SelectChecker(x2, y2);
+                int whiteOrBlack = 0;
+                if (c1.Color == "white")
+                {
+                    whiteOrBlack = 1;
+                }
+                else if (c1.Color == "black")
+                {
+                    whiteOrBlack = -1;
+                }
 
+                if ((x2 == x1 + whiteOrBlack) && (y2 == y1 + 1 || y2 == y1 - 1 || y2 == y1)
+                && (Checkers.Position == null))
+                {
+                    c1.Position[0] = x2;
+                    c1.Position[1] = y2;
+                }
+
+
+                else
+                {
+                    Console.WriteLine("Invalid placement. Enter new Placement again");
+                }
+            }
+            catch
+            {
+                Console.WriteLine("invalid pickup");
+            }
+
+
+
+            // DrawBoard();
+
+            DrawBoard();
         }
         public void RemoveChecker(int row, int column)
         {
