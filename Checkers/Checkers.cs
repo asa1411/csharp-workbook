@@ -150,9 +150,7 @@ namespace Checkers
                 Console.WriteLine("Enter Placement column");
                 int y2 = Convert.ToInt32(Console.ReadLine());
                 Checker c1;
-                // Checker c2;
                 c1 = SelectChecker(x1, y1);
-                // c2 = SelectChecker(x2, y2);
                 int whiteOrBlack = 0;
                 if (c1.Color == "white")
                 {
@@ -175,29 +173,12 @@ namespace Checkers
                         {
                             Console.WriteLine("Checker is already there. Enter new placement.");
                         }
-                        else if (check.Color != c1.Color)
+                        else 
                         {
-                            int whiteOrBlack1 = 0;
-                            if (c1.Color == "white" && y2 > y1)
-                            {
-                                whiteOrBlack1 = 2;
-                            }
-                            else if (c1.Color == "white" && y2 < y1)
-                            {
-                                whiteOrBlack1 = -2;
-                            }
-                            else if (c1.Color == "black" && y2 > y1)
-                            {
-                                whiteOrBlack1 = -2;
-                            }
-                            else if (c1.Color == "black" && y2 < y1)
-                            {
-                                whiteOrBlack1 = 2;
-                            }
-
-                            c1.Position[0] = x2 + whiteOrBlack1;
-                            c1.Position[1] = y2 + whiteOrBlack1;
+                            c1.Position[0] = (x2 - x1) * 2 + x1;
+                            c1.Position[1] = (y2 - y1) * 2 + y1;
                             RemoveChecker(x2, y2);
+                            
                         }
 
                     }
@@ -220,9 +201,6 @@ namespace Checkers
                 Console.WriteLine("invalid pickup");
             }
 
-
-
-            // DrawBoard();
 
             DrawBoard();
         }
