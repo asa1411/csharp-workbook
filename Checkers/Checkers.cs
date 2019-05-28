@@ -163,18 +163,57 @@ namespace Checkers
                     whiteOrBlack = -1;
                 }
 
-                if ((x2 == x1 + whiteOrBlack) && (y2 == y1 + 1 || y2 == y1 - 1 || y2 == y1)
-                && (Checkers.Position == null))
-                {
-                    c1.Position[0] = x2;
-                    c1.Position[1] = y2;
-                }
+                if (x2 == x1 + whiteOrBlack && y2 == y1 + 1 || y2 == y1 - 1)
 
+                {
+                    Checker check;
+                    check = SelectChecker(x2, y2);
+
+                    if (check != null)
+                    {
+                        if (check.Color == c1.Color)
+                        {
+                            Console.WriteLine("Checker is already there. Enter new placement.");
+                        }
+                        else if (check.Color != c1.Color)
+                        {
+                            int whiteOrBlack1 = 0;
+                            if (c1.Color == "white" && y2 > y1)
+                            {
+                                whiteOrBlack1 = 2;
+                            }
+                            else if (c1.Color == "white" && y2 < y1)
+                            {
+                                whiteOrBlack1 = -2;
+                            }
+                            else if (c1.Color == "black" && y2 > y1)
+                            {
+                                whiteOrBlack1 = -2;
+                            }
+                            else if (c1.Color == "black" && y2 < y1)
+                            {
+                                whiteOrBlack1 = 2;
+                            }
+
+                            c1.Position[0] = x2 + whiteOrBlack1;
+                            c1.Position[1] = y2 + whiteOrBlack1;
+                            RemoveChecker(x2, y2);
+                        }
+
+                    }
+                    else
+                    {
+                        c1.Position[0] = x2;
+                        c1.Position[1] = y2;
+                    }
+                }
 
                 else
                 {
                     Console.WriteLine("Invalid placement. Enter new Placement again");
                 }
+
+
             }
             catch
             {
@@ -189,13 +228,19 @@ namespace Checkers
         }
         public void RemoveChecker(int row, int column)
         {
-            // Your code here
-            return;
+            Checkers.Remove(SelectChecker(row, column));
+
         }
 
         public bool CheckForWin()
         {
-            return Checkers.All(x => x.Color == "white") || !Checkers.Exists(x => x.Color == "white");
+            bool won = false;
+            if (Checkers.All(x => x.Color == "white") || !Checkers.Exists(x => x.Color == "white") || (Checkers.All(x => x.Color == "black") || !Checkers.Exists(x => x.Color == "black")))
+            {
+                won = true;
+            }
+            return won;
+
         }
     }
 
@@ -206,9 +251,15 @@ namespace Checkers
             Board board = new Board();
             board.GenerateCheckers();
             board.DrawBoard();
-            board.MoveChecker();
+            while (!board.CheckForWin())
+            {
+                board.MoveChecker();
+            }
 
-            // Your code here
+
         }
     }
 }
+
+
+
