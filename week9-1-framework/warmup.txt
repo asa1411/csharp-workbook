@@ -1,0 +1,26 @@
+1. create a new sqlite file, on the console execute:
+>squlite3 books.db
+2. create 2 tables
+-books:
+   id
+   title
+   type
+
+-authors:
+   id
+   name
+
+if you want sql lite to print out stuff nicely
+> .mode column
+> .header on
+
+alter table books add column author_id int;
+update books set author_id = 101 where type = 'Fantasy'; 
+select * from 
+books inner join authors on ("inner join" means matching two sides with no match)
+books.author_id = authors.id
+
+select books.title, authots.name from books inner join authors on books.author_id = authors.id;
+
+To bring from database: SQLite Entity Framework --> Microsoft.EntityFrameworkCore.Sqlite
+dotnet add package Microsoft.EntityFrameworkCore.Sqlite
