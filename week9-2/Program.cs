@@ -8,18 +8,26 @@ namespace week9_2
     {
         public static void Main(string[] args)
         {
-            Person bobby = new Person();
             Person hank = new Person();
-            Person peggy = new Person();
 
-            hank.dad = bobby;
-            hank.mom = peggy;
+            hank.dad = null;
+            hank.mom = null;
             hank.name = "Hank Hill";
             hank.gender = 2;
 
+            Person peggy = new Person();
+            peggy.dad = null;
+            peggy.mom = null;
+            peggy.name = "Peggy Hill";
+
+            Person bobby = new Person();
+            bobby.dad = hank;
+            bobby.mom = peggy;
+            bobby.name = "Bobby Hill";
+
             Console.WriteLine(hank);
-            Console.WriteLine(hank.dad);
-            Console.WriteLine(hank.mom);
+            Console.WriteLine(bobby.dad);
+            Console.WriteLine(bobby.mom);
             Console.WriteLine(hank.gender);
 
             PersonContext context = new PersonContext();
@@ -30,9 +38,9 @@ namespace week9_2
             context.persons.Add(peggy);
             context.SaveChanges();
             context.persons.Add(bobby);
-              context.SaveChanges();
-           // context.persons.Add(2);
-           context.SaveChanges(); 
+            context.SaveChanges();
+            // context.persons.Add(2);
+            context.SaveChanges();
 
 
         }
@@ -46,7 +54,7 @@ namespace week9_2
         public int id { get; private set; }
         public string name { get; set; }
         public int momId { get; set; }
-        public int gender {get; set;}
+        public int gender { get; set; }
         public Person mom { get; set; }
         public int dadId { get; set; }
         public Person dad { get; set; }
