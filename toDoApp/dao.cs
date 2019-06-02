@@ -40,7 +40,7 @@ namespace toDoApp
             List<Item> result = new List<Item>();
             foreach(Item i in context.items)
             {
-                if(i.done == Status.done)
+                if(i.status == Status.done)
                 {
                     result.Add(i);
                 }
