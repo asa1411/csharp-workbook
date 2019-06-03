@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+
 
 namespace toDoApp
 {
@@ -28,27 +30,55 @@ namespace toDoApp
             {
                 listAll(_toDo);
             }
-
+            if (input == "mark done")
+            {
+                markDone(_toDo);
+            }
+            if (input == "delete")
+            {
+                delete(_toDo);
+            }
         }
         public static void add(toDoAppContext _toDo)
         {
             Console.WriteLine("Enter an item description.");
             string desc1 = Console.ReadLine();
-            
+
             Item myItem = new Item(desc1, Status.pending);
             _toDo.items.Add(myItem);
             _toDo.SaveChanges();
+            Console.WriteLine("[item added]");
 
         }
         public static void listAll(toDoAppContext _toDo)
         {
             var result = from s in _toDo.items
                          select s;
-            //select * from _toDo.items;
             foreach (Item i in result)
             {
                 Console.WriteLine("{0} {1} {2}", i.id, i.desc, i.status);
             }
+
+        }
+        public static void markDone(toDoAppContext _toDo)
+        {
+            Console.WriteLine("Enter the item id.");
+            int id2 = Convert.ToInt32(Console.ReadLine());
+            Item a = _toDo.items.Find(id2);//find the item of id i from Dbset items in context
+            a.status = Status.done;
+            _toDo.SaveChanges();
+            Thread.Sleep(2000);
+            Console.WriteLine("[item updated]");
+        }
+        public static void delete(toDoAppContext _toDo)
+        {
+            Console.WriteLine("Enter the item id #.");
+            int idi = Convert.ToInt32(Console.ReadLine());
+            Item b = _toDo.items.Find(idi);
+            _toDo.items.Remove(b);
+            _toDo.SaveChanges();
+            Thread.Sleep(2000);
+            Console.WriteLine("[item deleted]");
 
         }
 
