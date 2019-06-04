@@ -23,7 +23,7 @@ namespace toDoApp
     }
     public enum Status
     {
-        pending, done, tobedone
+        Pending, Done
     }
 
 }

@@ -8,7 +8,7 @@ namespace toDoApp
 {
     class Controller
     {
-        public static void homescreen(toDoAppContext _toDo)
+        public static void homescreen(Dao d)
         {
             Console.WriteLine("Available functions:");
             Console.WriteLine("add: to add an item");
@@ -23,36 +23,36 @@ namespace toDoApp
             string input = Console.ReadLine();
             if (input == "add")
             {
-                add(_toDo);
+                add(d);
 
             }
             if (input == "list all")
             {
-                listAll(_toDo);
+                listAll(d);
             }
             if (input == "mark done")
             {
-                markDone(_toDo);
+                markDone(d);
             }
             if (input == "delete")
             {
-                delete(_toDo);
+                delete(d);
             }
         }
-        public static void add(toDoAppContext _toDo)
+        public static void add(Dao d)
         {
             Console.WriteLine("Enter an item description.");
             string desc1 = Console.ReadLine();
 
             Item myItem = new Item(desc1, Status.pending);
-            _toDo.items.Add(myItem);
-            _toDo.SaveChanges();
+            d.context.items.Add(myItem);
+            d.context.SaveChanges();
             Console.WriteLine("[item added]");
 
         }
-        public static void listAll(toDoAppContext _toDo)
+        public static void listAll(Dao d)
         {
-            var result = from s in _toDo.items
+            var result = from s in d.context.items
                          select s;
             foreach (Item i in result)
             {
@@ -60,23 +60,25 @@ namespace toDoApp
             }
 
         }
-        public static void markDone(toDoAppContext _toDo)
+        public static void markDone(Dao d)
         {
             Console.WriteLine("Enter the item id.");
             int id2 = Convert.ToInt32(Console.ReadLine());
-            Item a = _toDo.items.Find(id2);//find the item of id i from Dbset items in context
+            Item a = d.context.items.Find(id2);//find the item of id i from Dbset items in context
+            Console.WriteLine(a);
             a.status = Status.done;
-            _toDo.SaveChanges();
+            d.context.SaveChanges();
             Thread.Sleep(2000);
             Console.WriteLine("[item updated]");
         }
-        public static void delete(toDoAppContext _toDo)
+        public static void delete(Dao d)
         {
             Console.WriteLine("Enter the item id #.");
             int idi = Convert.ToInt32(Console.ReadLine());
-            Item b = _toDo.items.Find(idi);
-            _toDo.items.Remove(b);
-            _toDo.SaveChanges();
+            Item b = d.context.items.Find(idi);
+            d.context.items.Remove(b);//why it does return null...
+            Console.WriteLine(b);
+            d.context.SaveChanges();
             Thread.Sleep(2000);
             Console.WriteLine("[item deleted]");
 
@@ -88,7 +90,7 @@ namespace toDoApp
             Dao dao = new Dao();
             toDoAppContext _toDo = new toDoAppContext();
 
-            Controller.homescreen(_toDo);
+            Controller.homescreen(dao);
 
             foreach (Item i in dao.listItems())
             {

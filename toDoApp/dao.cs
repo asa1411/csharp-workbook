@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace toDoApp
 {
-    public  class Dao
+    public class Dao
     {
-        private toDoAppContext context;
+        public toDoAppContext context;
 
         // creates a new instance of the dao
         public Dao()
@@ -15,7 +15,7 @@ namespace toDoApp
             context.Database.EnsureCreated();
 
         }
-        
+
         // create the coresponding item and store it
         public void create(String desc, Status done)
         {
@@ -25,9 +25,10 @@ namespace toDoApp
         }
 
         // return the current list of item descriptions
-        public List<Item> listItems(){
-            List<Item> result  = new List<Item>();
-            foreach(Item i in context.items) 
+        public List<Item> listItems()
+        {
+            List<Item> result = new List<Item>();
+            foreach (Item i in context.items)
             {
                 result.Add(i);
             }
@@ -35,12 +36,13 @@ namespace toDoApp
         }
 
         // return only the done item descriptions
-        public  List<Item> listDoneItems() {
-            
+        public List<Item> listDoneItems()
+        {
+
             List<Item> result = new List<Item>();
-            foreach(Item i in context.items)
+            foreach (Item i in context.items)
             {
-                if(i.status == Status.done)
+                if (i.status == Status.done)
                 {
                     result.Add(i);
                 }
@@ -51,7 +53,7 @@ namespace toDoApp
 
     // using Microsoft.EntityFrameworkCore;
 
-    public class  toDoAppContext : DbContext
+    public class toDoAppContext : DbContext
     {
         public DbSet<Item> items { get; private set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
