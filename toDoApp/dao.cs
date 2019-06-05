@@ -6,7 +6,7 @@ namespace toDoApp
 {
     public class Dao
     {
-        public toDoAppContext context;
+        private toDoAppContext context;
 
         // creates a new instance of the dao
         public Dao()
@@ -17,9 +17,9 @@ namespace toDoApp
         }
 
         // create the coresponding item and store it
-        public void create(String desc, Status done)
+        public void create(String desc)
         {
-            Item newItem = new Item(desc, done);
+            Item newItem = new Item(desc, false);
             context.items.Add(newItem);
             context.SaveChanges();
         }
@@ -35,6 +35,19 @@ namespace toDoApp
             return result;
         }
 
+        public void markDone(int id)
+        {
+            foreach (Item i in context.items)
+            {
+                if(id == i.id)
+                {
+                    i.done = true;
+                    context.SaveChanges();
+                }
+
+            }
+        }
+
         // return only the done item descriptions
         public List<Item> listDoneItems()
         {
@@ -42,7 +55,7 @@ namespace toDoApp
             List<Item> result = new List<Item>();
             foreach (Item i in context.items)
             {
-                if (i.status == Status.done)
+                if (i.done==true)
                 {
                     result.Add(i);
                 }
