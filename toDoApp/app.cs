@@ -21,13 +21,50 @@ namespace toDoApp
         public App()
         {
             dao = new Dao();
-            utils = new Utils("Prefix");
+            utils = new Utils("ToDoList: ");
         }
 
         public void start()
         {
             utils.printMenu();
             String input = utils.getInput();
+            while (input != "quit")
+            {
+                if (input == "add")
+                {
+                    add();
+                    break;
+                }
+                else if (input == "delete")
+                {
+                    delete();
+                    break;
+                }
+                else if (input == "mark done")
+                {
+                    markDone();
+                    break;
+                }
+                else if (input == "list all")
+                {
+                    listAll();
+                    break;
+                }
+                else if (input == "list pending")
+                {
+                    dao.listPendingItems();
+                    break;
+                }
+                else
+                {
+                    utils.printError("Your input is not valid. Try again");
+                    break;
+
+
+
+                }
+            }
+            utils.printMsg("Have a nice day");
         }
 
 
@@ -41,34 +78,26 @@ namespace toDoApp
         }
         public void listAll()
         {
-            var result = from s in dao.listItems()
-                         select s;
-            foreach (Item i in result)
-            {
-                Console.WriteLine("{0} {1} {2}", i.id, i.desc, i.done);
-            }
-
+            dao.listItems();
         }
         public void markDone()
         {
             utils.printMsg("Enter the item id.");
             int a = Convert.ToInt32(utils.getInput());
-     
+            dao.markDone(a);
             Thread.Sleep(2000);
             Console.WriteLine("[item updated]");
         }
-        public static void delete(Dao d)
+        public void delete()
         {
-            Console.WriteLine("Enter the item id #.");
-            int idi = Convert.ToInt32(Console.ReadLine());
-            Item b = d.context.items.Find(idi);
-            d.context.items.Remove(b);//why it does return null...
-            Console.WriteLine(b.desc);
-            d.context.SaveChanges();
+            utils.printMsg("Enter the item id #.");
+            int idi = Convert.ToInt32(utils.getInput());
+            dao.delete(idi);
             Thread.Sleep(2000);
             Console.WriteLine("[item deleted]");
 
         }
+
 
 
     }

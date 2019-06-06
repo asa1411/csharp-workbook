@@ -31,7 +31,7 @@ namespace toDoApp
             Console.WriteLine("list all: to list all items");
             Console.WriteLine("quit: to exit");
             Console.WriteLine("What would you like to do?");
-                      
+                    
         }
 
         public string getInput()

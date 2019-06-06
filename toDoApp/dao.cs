@@ -25,26 +25,49 @@ namespace toDoApp
         }
 
         // return the current list of item descriptions
-        public List<Item> listItems()
+        public void listItems()
         {
-            List<Item> result = new List<Item>();
+            string status;
             foreach (Item i in context.items)
             {
-                result.Add(i);
+                if (i.done == false)
+                {
+                    status = "pending";
+                    Console.WriteLine("{0} {1} {2}", i.id, i.desc, status);
+
+                }
+                if (i.done == true)
+                {
+                    status = "done";
+                    Console.WriteLine("{0} {1} {2}", i.id, i.desc, status);
+                }
+
             }
-            return result;
+
         }
 
         public void markDone(int id)
         {
             foreach (Item i in context.items)
             {
-                if(id == i.id)
+                if (id == i.id)
                 {
                     i.done = true;
                     context.SaveChanges();
                 }
 
+            }
+        }
+
+        public void delete(int id)
+        {
+            foreach (Item i in context.items)
+            {
+                if (id == i.id)
+                {
+                    context.items.Remove(i);
+                    context.SaveChanges();
+                }
             }
         }
 
@@ -55,10 +78,21 @@ namespace toDoApp
             List<Item> result = new List<Item>();
             foreach (Item i in context.items)
             {
-                if (i.done==true)
+                if (i.done == true)
                 {
                     result.Add(i);
                 }
+            }
+            return result;
+        }
+        public List<Item> listPendingItems()
+        {
+            List<Item> result = new List<Item>();
+            foreach (Item i in context.items)
+            {
+                if (i.done == false)
+                { result.Add(i); }
+
             }
             return result;
         }
@@ -71,7 +105,7 @@ namespace toDoApp
         public DbSet<Item> items { get; private set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Filename=./items.db");
+            optionsBuilder.UseSqlite("Filename=./items2.db");
 
         }
     }
