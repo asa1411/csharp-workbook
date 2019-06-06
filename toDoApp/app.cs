@@ -28,37 +28,57 @@ namespace toDoApp
         {
             utils.printMenu();
             String input = utils.getInput();
-            while (input != "quit")
+            if (input != "quit")
             {
                 if (input == "add")
                 {
                     add();
-                    break;
+                    try
+                    {
+                        utils.printMsg("Do you want to add another item? y or n");
+                        string r = utils.getInput().ToLower();
+                        while (r == "y")
+                        {
+                            add();
+                            utils.printMsg("Do you want to add another item? y or n");
+                            r = utils.getInput().ToLower();
+                        }
+                        
+                    }
+                    catch
+                    {
+                        utils.printError("Your input is not valid. Try again.");
+                    }
+
                 }
                 else if (input == "delete")
                 {
                     delete();
-                    break;
+
                 }
                 else if (input == "mark done")
                 {
                     markDone();
-                    break;
+
                 }
                 else if (input == "list all")
                 {
                     listAll();
-                    break;
+
                 }
                 else if (input == "list pending")
                 {
                     dao.listPendingItems();
-                    break;
+
+                }
+                else if (input == "list done")
+                {
+                    dao.listDoneItems();
                 }
                 else
                 {
                     utils.printError("Your input is not valid. Try again");
-                    break;
+
 
 
 
@@ -76,27 +96,46 @@ namespace toDoApp
             Console.WriteLine("[item added]");
 
         }
+
+        public void delete()
+        {
+            try
+            {
+                utils.printMsg("Enter the item id #.");
+                int idi = Convert.ToInt32(utils.getInput());
+                dao.delete(idi);
+                Thread.Sleep(2000);
+                Console.WriteLine("[item deleted]");
+            }
+            catch
+            {
+                utils.printError("Your input is invalid. Try again");
+            }
+
+        }
+
+        public void markDone()
+        {
+            try
+            {
+                utils.printMsg("Enter the item id.");
+                int a = Convert.ToInt32(utils.getInput());
+                dao.markDone(a);
+                Thread.Sleep(2000);
+                Console.WriteLine("[item updated]");
+            }
+            catch
+            {
+                utils.printError("Your input is invalid. Try again");
+            }
+        }
         public void listAll()
         {
             dao.listItems();
         }
-        public void markDone()
-        {
-            utils.printMsg("Enter the item id.");
-            int a = Convert.ToInt32(utils.getInput());
-            dao.markDone(a);
-            Thread.Sleep(2000);
-            Console.WriteLine("[item updated]");
-        }
-        public void delete()
-        {
-            utils.printMsg("Enter the item id #.");
-            int idi = Convert.ToInt32(utils.getInput());
-            dao.delete(idi);
-            Thread.Sleep(2000);
-            Console.WriteLine("[item deleted]");
 
-        }
+
+
 
 
 

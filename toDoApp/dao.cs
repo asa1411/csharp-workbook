@@ -71,30 +71,32 @@ namespace toDoApp
             }
         }
 
-        // return only the done item descriptions
-        public List<Item> listDoneItems()
+        public void listDoneItems()
         {
-
-            List<Item> result = new List<Item>();
+            string status;
             foreach (Item i in context.items)
             {
                 if (i.done == true)
                 {
-                    result.Add(i);
+                    status = "done";
+                    Console.WriteLine("{0} {1} {2}", i.id, i.desc, status);
                 }
             }
-            return result;
+
         }
-        public List<Item> listPendingItems()
+        public void listPendingItems()
         {
-            List<Item> result = new List<Item>();
+            string status;
             foreach (Item i in context.items)
             {
                 if (i.done == false)
-                { result.Add(i); }
+                {
+                    status = "pending";
+                    Console.WriteLine("{0} {1} {2}", i.id, i.desc, status);
+                }
 
             }
-            return result;
+
         }
     }
 
