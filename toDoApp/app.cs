@@ -133,11 +133,5 @@ namespace toDoApp
         {
             dao.listItems();
         }
-
-
-
-
-
-
     }
 }
