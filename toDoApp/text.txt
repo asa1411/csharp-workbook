@@ -1,0 +1,10 @@
+
+Dao dao = new Dao();
+            toDoAppContext _toDo = new toDoAppContext();
+
+            Controller.homescreen(dao);
+
+            foreach (Item i in dao.listItems())
+            {
+                Console.WriteLine(" ");
+            }
