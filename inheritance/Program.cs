@@ -6,18 +6,20 @@ namespace inheritance
     class Program
     {
         static void Main(string[] args)
-
         {//make a list of cars
             Car bigBlue = new Car("Big Blue", 102.40);
             Car herby = new Car("Herby", 40);
             Car delorian = new Car("Delorian", 88);
             Car mysteryMachine = new Car("Mystery Machine", 102.5);
-
+            Person Alson = new Person("Alison", 100);
+            Person Mary = new Person("Mary", 70);
             List<IRace> racers = new List<IRace>();
             racers.Add(bigBlue);
             racers.Add(herby);
             racers.Add(delorian);
             racers.Add(mysteryMachine);
+            racers.Add(Alson);
+            racers.Add(Mary);
 
             foreach (IRace r1 in racers)
             {
@@ -84,15 +86,18 @@ namespace inheritance
             this.name = initialName;
             this.speedMPM = initialSpeed;
         }
+        public double getSpeedMPH()
+        {
+            return (speedMPM / 1609) * 60;
+        }
         override
         public String ToString()
         {
-            return this.name;
+            string p = string.Format($"{this.name} {this.speedMPM}");
+            return p;
         }
-        public double getSpeedMPH()
-        {
-            return (speedMPM / 60) * 1609;
-        }
+
+
     }
 }
 //1 interface
