@@ -1,0 +1,14 @@
+item class
+
+dao class - itemContext
+ instantiate item class
+ 
+app/main() - new app; App app = new app (); app.start();
+ instatiate dao, instatiate utils
+
+utils//you can make it static but you don't have to
+ -printMan()
+ -printmsg(string)
+ -printerror()
+ -get input()
+ ----
