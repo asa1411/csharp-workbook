@@ -32,7 +32,7 @@ namespace inheritance
         }
         public static IRace race(IRace r1, IRace r2)
         {
-            if (r1.getSpeedMPH() > r2.getSpeedMPH())
+            if (r1.speedMPH > r2.speedMPH)
             {
                 return r1;
             }
@@ -96,6 +96,7 @@ namespace inheritance
             string p = string.Format($"{this.name} {this.speedMPM}");
             return p;
         }
+
 
     }
 }
