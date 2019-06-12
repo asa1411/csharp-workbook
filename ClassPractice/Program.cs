@@ -6,6 +6,7 @@ namespace ClassPractice
     {
         static void Main(string[] args)
         {
+
             _2DPoint p1 = new _2DPoint(3, 4);
             _3Dpoint p2 = new _3Dpoint(4, 5, 6);
             Console.WriteLine("p1 = {0}", p1);
@@ -53,5 +54,9 @@ namespace ClassPractice
             return s;
         }
 
+
+        }
+    }
+    
     }
 }
