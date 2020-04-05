@@ -15,11 +15,40 @@ namespace RockPaperScissors
             // leave this command at the end so your program does not close automatically
             Console.ReadLine();
         }
-        
+
         public static string CompareHands(string hand1, string hand2)
         {
             // Your code here
-            return hand1 + ' ' + hand2;
+            if (hand1 == hand2)
+            {
+                return "it is a tie";
+            }
+            else if (hand1 == "rock")
+            {
+                if (hand2 == "scissors")
+                    return "hand1 wins.";
+                else
+                {
+                    return "hand2 wins.";
+                }
+            }
+            else if (hand1 == "paper")
+            {
+                if (hand2 == "rock")
+                    return "hand1 wins.";
+                else
+                {
+                    return "hand2 wins.";
+                }
+            }
+
+            else
+            {
+                if (hand2 == "paper")
+                    return "hand1 wins.";
+                else { return "hand2 wins."; }
+            }
+
         }
     }
 }
