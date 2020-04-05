@@ -6,11 +6,16 @@ namespace RockPaperScissors
     {
         public static void Main()
         {
-            Console.WriteLine("Enter hand 1:");
-            string hand1 = Console.ReadLine().ToLower();
-            Console.WriteLine("Enter hand 2:");
-            string hand2 = Console.ReadLine().ToLower();
-            Console.WriteLine(CompareHands(hand1, hand2));
+            int counter = 1;
+            while (counter < 10)
+            {
+                Console.WriteLine("Enter hand 1:");
+                string hand1 = Console.ReadLine().ToLower();
+                Console.WriteLine("Enter hand 2:");
+                string hand2 = Console.ReadLine().ToLower();
+                Console.WriteLine(CompareHands(hand1, hand2));
+            }
+
 
             // leave this command at the end so your program does not close automatically
             Console.ReadLine();
@@ -42,7 +47,7 @@ namespace RockPaperScissors
                 }
             }
 
-            else
+            else if (hand1 == "scissors")
             {
                 if (hand2 == "paper")
                     return "hand1 wins.";
