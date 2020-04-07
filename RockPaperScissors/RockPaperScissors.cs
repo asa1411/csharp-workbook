@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace RockPaperScissors
 {
@@ -11,9 +12,13 @@ namespace RockPaperScissors
             {
                 Console.WriteLine("Enter hand 1:");
                 string hand1 = Console.ReadLine().ToLower();
-                Console.WriteLine("Enter hand 2:");
-                string hand2 = Console.ReadLine().ToLower();
+                var random = new Random();
+                var list = new List<string> { "rock", "paper", "scissors" };
+                int index = random.Next(list.Count);
+                string hand2 = list[index];
+                Console.WriteLine(hand2);
                 Console.WriteLine(CompareHands(hand1, hand2));
+                counter++;
             }
 
 
@@ -25,13 +30,13 @@ namespace RockPaperScissors
         {
             // Your code here
             if (hand1 == hand2)
-            {
+
                 return "it is a tie";
-            }
+
             else if (hand1 == "rock")
             {
                 if (hand2 == "scissors")
-                    return "hand1 wins.";
+                    return "Hand1 wins.";
                 else
                 {
                     return "hand2 wins.";
@@ -47,7 +52,7 @@ namespace RockPaperScissors
                 }
             }
 
-            else if (hand1 == "scissors")
+            else
             {
                 if (hand2 == "paper")
                     return "hand1 wins.";
