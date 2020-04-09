@@ -11,7 +11,7 @@ namespace RockPaperScissors
             int H2 = 0;
             int H1 = 0;
             int Tie = 0;
-            while (counter < 10)
+            while (counter <= 5)
             {
                 Console.WriteLine("Enter hand 1:");
                 string hand1 = Console.ReadLine().ToLower();
@@ -25,23 +25,28 @@ namespace RockPaperScissors
                 //List is a generic class and it needs system.collections.generic.
                 int index = random.Next(list.Count);
                 string hand2 = list[index];
-                Console.WriteLine(hand2);
-
+                Console.WriteLine("Hand2 is " + hand2);
                 Console.WriteLine(CompareHands(hand1, hand2));
-                //Console.ReadLine(); Here is a problem to be resolved.
-                if (Console.ReadLine() == "it is a tie")
+                String output = CompareHands(hand1, hand2);
+                switch (output)
                 {
-                    Tie++;
+                    case "it is a tie":
+                        Tie++;
+                        break;
+                    case "hand1 wins.":
+                        H1++;
+                        break;
+                    case "hand2 wins.":
+                        H2++;
+                        break;
                 }
-                else if (Console.ReadLine() == "hand1 wins.") { H1++; }
-                else { H2++; }
-                Console.WriteLine("Hand1 win #: " + H1 + "   Tie:" + Tie + "   Hand2 win #:" + H2);
+                Console.WriteLine("Hand1 wins #: " + H1 + "   Tie:" + Tie + "   Hand2 wins #:" + H2);
                 counter++;
             }
 
 
             // leave this command at the end so your program does not close automatically
-            //Console.ReadLine();
+            Console.ReadLine();
         }
 
         public static string CompareHands(string hand1, string hand2)
@@ -78,5 +83,7 @@ namespace RockPaperScissors
             }
 
         }
+
+
     }
 }
