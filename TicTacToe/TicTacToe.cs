@@ -28,8 +28,8 @@ namespace TicTacToe
         }
 
         public static void GetInput()
-        {   
-            
+        {
+
             Console.WriteLine("Player " + playerTurn);
             Console.WriteLine("Enter Row:");
             int row = int.Parse(Console.ReadLine());
@@ -70,22 +70,23 @@ namespace TicTacToe
 
                 return true;
             }
-            else { return false; }
+            else
+            { return false; }
 
 
         }
         public static bool CheckForTie()
         {
             // Since winning is already declared, any other filling of all 9 cells without win is tie. Boolean method should be returned true to make any execution
-            if (board[0][0] == playerTurn &&
-            board[0][1] == playerTurn &&
-            board[0][2] == playerTurn &&
-            board[1][0] == playerTurn &&
-            board[1][1] == playerTurn &&
-            board[1][2] == playerTurn &&
-            board[2][0] == playerTurn &&
-            board[2][1] == playerTurn &&
-            board[2][2] == playerTurn)
+            if ((board[0][0] == "X" || board[0][0] == "O") &&
+            (board[0][1] == "X" || board[0][1] == "O") &&
+            (board[0][2] == "X" || board[0][2] == "O") &&
+            (board[1][0] == "X" || board[1][0] == "O") &&
+            (board[1][1] == "X" || board[1][1] == "O") &&
+            (board[1][2] == "X" || board[1][2] == "O") &&
+            (board[2][0] == "X" || board[2][0] == "O") &&
+            (board[2][1] == "X" || board[2][1] == "O") &&
+            (board[2][2] == "X" || board[2][2] == "O"))
             {
                 Console.WriteLine("It's a tie.");
                 return true;
