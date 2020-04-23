@@ -12,14 +12,15 @@ namespace practice1
             int sum = 0;
             while (input != "ok")
             {
+                int num = int.Parse(input);
+                sum = sum + num;
+                Console.WriteLine($"The sum is {sum}.");
                 Console.WriteLine("Enter a number or 'ok' to exit.");
-                String input1 = Console.ReadLine();
-                int input1Number = int.Parse(input1);
-                sum = sum + input1Number;
-                Console.WriteLine(sum);
+                input = Console.ReadLine();
 
             }
-
+            Console.WriteLine($"Thank you.");
         }
     }
 }
+
