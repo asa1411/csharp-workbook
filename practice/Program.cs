@@ -8,6 +8,7 @@ namespace practice
 
         {
             Console.WriteLine(divisible(num));
+
         }
 
         static int divisible(string[] args)
@@ -20,5 +21,7 @@ namespace practice
             }
             return (num);
         }
+
+
     }
 }
