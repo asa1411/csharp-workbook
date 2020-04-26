@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace practice1
 {
@@ -13,7 +14,9 @@ namespace practice1
             Console.WriteLine();
             Console.WriteLine("This is the random number question.");
             randomNumber();
-
+            Console.WriteLine();
+            Console.WriteLine("This is the maximum question.");
+            max();
 
         }
         static void Sum()
@@ -66,6 +69,29 @@ namespace practice1
                 Console.WriteLine("You won.");
             }
             else Console.WriteLine("You lost.");
+        }
+
+        static void max()
+        {
+            Console.WriteLine("Entry a series of numbers separated by comma.");
+            string response = Console.ReadLine();
+            List<int> input1 = new List<int>();
+            foreach (string sn in response.Split(","))
+            {
+                int s = int.Parse(sn);
+                input1.Add(s);
+            }
+
+
+            int max = 0;
+            for (int i = 1; i <= input1.Count; i++)
+            {
+                if (input1[i - 1] >= max)
+                    max = input1[i - 1];
+            }
+            Console.WriteLine($"The maximum number in the series is {max}.");
+
+
         }
     }
 }
