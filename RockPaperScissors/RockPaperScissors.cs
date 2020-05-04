@@ -15,6 +15,17 @@ namespace RockPaperScissors
             {
                 Console.WriteLine("Enter hand 1:");
                 string hand1 = Console.ReadLine().ToLower();
+                try
+                {
+                    if (hand1 != "rock" && hand1 != "scissors" && hand1 != "paper")
+                        throw (new Exception("You got an error and try again."));
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    //continue repeats commands above it until if clause meets the requirement
+                    continue;
+                }
                 var random = new Random();
                 var list = new List<string> { "rock", "paper", "scissors" };
                 //list.Count returns the size of the list which is 3.
@@ -42,6 +53,7 @@ namespace RockPaperScissors
                 }
                 Console.WriteLine("Hand1 wins #: " + H1 + "   Tie:" + Tie + "   Hand2 wins #:" + H2);
                 counter++;
+
             }
 
 
@@ -61,9 +73,10 @@ namespace RockPaperScissors
                 if (hand2 == "scissors")
                     return "hand1 wins.";
                 else
-                {
+
                     return "hand2 wins.";
-                }
+
+
             }
             else if (hand1 == "paper")
             {
