@@ -26,6 +26,10 @@ namespace RockPaperScissors
                     //continue repeats commands above it until if clause meets the requirement
                     continue;
                 }
+                finally
+                {
+                    Console.WriteLine();
+                }
                 var random = new Random();
                 var list = new List<string> { "rock", "paper", "scissors" };
                 //list.Count returns the size of the list which is 3.
@@ -53,6 +57,7 @@ namespace RockPaperScissors
                 }
                 Console.WriteLine("Hand1 wins #: " + H1 + "   Tie:" + Tie + "   Hand2 wins #:" + H2);
                 counter++;
+                
 
             }
 
