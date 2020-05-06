@@ -7,18 +7,14 @@ namespace ooppractice
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            trees loquat = new trees();
+            trees loquat = new trees("decidious", "yellow");
             loquat.height = 12;
             loquat.evergreen = true;
-            loquat.fruit = "yellow sweet sour";
-            loquat.leaves = "decidious";
-
-            trees figtree = new trees();
+            
+            trees figtree = new trees("decidious", "summer sweet");
             figtree.height = 10;
             figtree.evergreen = false;
-            figtree.fruit = "summer sweet";
-            figtree.leaves = "decidious";
-
+            
             Console.WriteLine($"Figtree's leaves are {figtree.leaves}, and its fruit is {figtree.fruit}.");
             Console.WriteLine("Is loquat evergreen? Yes, it is {0}.", loquat.evergreen);
             Console.WriteLine($"My figtree is {figtree.height} feet high, and my loquat is {loquat.height} feet high.");
@@ -32,6 +28,12 @@ namespace ooppractice
         public string fruit;
         public bool evergreen;
         public int height;
+
+        public trees (string initialleaves, string initialfruit)
+        {
+            this.leaves = initialleaves;
+            this.fruit = initialfruit;
+        }
 
     }
 }
