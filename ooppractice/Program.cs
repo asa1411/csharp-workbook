@@ -8,11 +8,22 @@ namespace ooppractice
         {
             Person leia = new Person("Leia", "Organa", "Rebel");
             Person darth = new Person("Darth", "Vader", "Imperial");
+            Person han = new Person ("Han", "Solo", "Imperial");
+            Person luke = new Person("Luke", "Skywalker", "Rebel");
             Ship falcon = new Ship("Rebel", "Smuggling", 2);
             Ship tie = new Ship("Tie", "Fighter", 1);
+            Ship x = new Ship("Rebel", "Fighter", 5);
+            
             Station space = new Station("Rebel", "OK");
             Station star = new Station("Death", "Never");
-            Console.WriteLine("Hello world!");
+            falcon.EnterShip(leia, 1);
+            tie.EnterShip(darth, 0);
+            falcon.ExitShip(0);
+            Console.WriteLine(leia.FullName);
+            Console.WriteLine(star.alliance);
+            Console.WriteLine(tie.Passengers);
+
+
         }
     }
 
@@ -35,12 +46,12 @@ namespace ooppractice
                 return this.firstName + " " + this.lastName;
             }
 
-            set
+            /*set
             {
                 string[] names = value.Split(' ');
                 this.firstName = names[0];
                 this.lastName = names[1];
-            }
+            }*/
         }
     }
 
@@ -92,12 +103,10 @@ namespace ooppractice
     }
     class Station
     {
-        public string name { get; set; }
-        public string alliance { get; set; }
-        public Station(string initialName, string initialAlliance)
+        private Ship [] ships;
+        public Station(Ship ship, int capa)
         {
-            this.name = initialName;
-            this.alliance = initialAlliance;
+            this.ship;
         }
         public void dockShip(Ship ship)
         {; }
