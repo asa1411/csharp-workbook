@@ -6,28 +6,26 @@ namespace Object
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello Jungil!");
-           tool hammer = new tool ();
-           tool saw = new tool ();
-           hammer.type = "hometool";
-           hammer.size = "short";
-           saw.type = "hometool";
-           saw.size = "medium";
-            Console.WriteLine ("Hammer is for " + hammer.type + ". Its size is " + hammer.size+".");
+          school s1 = new school ("Cedar Ridge High School");
+            s1.type="private";
+            s1.size=2000;
+            s1.level="high";
+
+            Console.WriteLine("s1 is {0} and it is a {1} school and its size is {2}.", s1.name, s1.type, s1.size);
         }
     }
 
-    public class people
-    {
-        public string nationality;
-        public string color;
-        public int age;
-        public string career;
-
-    }
-    public class tool
+    public class school
     {
         public string type;
-        public string size;
+        public int size;
+        public string level;
+        public string name;
+
+        public school (string initialName)
+        {
+            this.name = initialName;
+        }
+
     }
 }
