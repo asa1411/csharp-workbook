@@ -6,26 +6,28 @@ namespace Object
     {
         static void Main(string[] args)
         {
-          school s1 = new school ("Cedar Ridge High School");
-            s1.type="private";
-            s1.size=2000;
-            s1.level="high";
-
-            Console.WriteLine("s1 is {0} and it is a {1} school and its size is {2}.", s1.name, s1.type, s1.size);
+          spiritualFruit love = new spiritualFruit ("good", "four");
+          spiritualFruit joy = new spiritualFruit ("delight", "three");
+          
+          Console.WriteLine ("{0} is spiritual fruit.", love.order);
         }
     }
 
-    public class school
+    public class spiritualFruit
     {
-        public string type;
-        public int size;
-        public string level;
-        public string name;
+       private string type;
+       private string length;
 
-        public school (string initialName)
-        {
-            this.name = initialName;
-        }
+       public string order {
+           get
+           {return type+" "+length;}
+       }
+
+    public spiritualFruit (string initialType, string initialLength)
+    {
+         this.type = initialType;
+         this.length = initialLength;
+    }
 
     }
 }
